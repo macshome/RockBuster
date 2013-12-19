@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		426F71391862925E00ABA3C3 /* JRWShipSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F71381862925E00ABA3C3 /* JRWShipSprite.m */; };
+		426F713C1862927400ABA3C3 /* JRWRockSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F713B1862927400ABA3C3 /* JRWRockSprite.m */; };
 		429D95D618624D7F008B524D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D518624D7F008B524D /* Cocoa.framework */; };
 		429D95D818624D7F008B524D /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D718624D7F008B524D /* SpriteKit.framework */; };
 		429D95E218624D7F008B524D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 429D95E018624D7F008B524D /* InfoPlist.strings */; };
@@ -34,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		426F71371862925E00ABA3C3 /* JRWShipSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWShipSprite.h; sourceTree = "<group>"; };
+		426F71381862925E00ABA3C3 /* JRWShipSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWShipSprite.m; sourceTree = "<group>"; };
+		426F713A1862927400ABA3C3 /* JRWRockSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWRockSprite.h; sourceTree = "<group>"; };
+		426F713B1862927400ABA3C3 /* JRWRockSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWRockSprite.m; sourceTree = "<group>"; };
 		429D95D218624D7F008B524D /* Rock Buster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rock Buster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		429D95D518624D7F008B524D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		429D95D718624D7F008B524D /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -126,12 +132,16 @@
 			isa = PBXGroup;
 			children = (
 				429D95E918624D7F008B524D /* MainMenu.xib */,
-				429D95EB18624D7F008B524D /* JRWMainScene.m */,
 				429D95ED18624D7F008B524D /* JRWMainScene.h */,
-				429D95EE18624D7F008B524D /* JRWAppDelegate.m */,
+				429D95EB18624D7F008B524D /* JRWMainScene.m */,
 				429D95F018624D7F008B524D /* JRWAppDelegate.h */,
+				429D95EE18624D7F008B524D /* JRWAppDelegate.m */,
 				429D95F318624D7F008B524D /* Images.xcassets */,
 				429D95DE18624D7F008B524D /* Supporting Files */,
+				426F71371862925E00ABA3C3 /* JRWShipSprite.h */,
+				426F71381862925E00ABA3C3 /* JRWShipSprite.m */,
+				426F713A1862927400ABA3C3 /* JRWRockSprite.h */,
+				426F713B1862927400ABA3C3 /* JRWRockSprite.m */,
 			);
 			path = "Rock Buster";
 			sourceTree = "<group>";
@@ -265,6 +275,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				426F71391862925E00ABA3C3 /* JRWShipSprite.m in Sources */,
+				426F713C1862927400ABA3C3 /* JRWRockSprite.m in Sources */,
 				429D95EC18624D7F008B524D /* JRWMainScene.m in Sources */,
 				429D95EF18624D7F008B524D /* JRWAppDelegate.m in Sources */,
 				429D95E418624D7F008B524D /* main.m in Sources */,
@@ -476,6 +488,7 @@
 				429D960B18624D7F008B524D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		429D960C18624D7F008B524D /* Build configuration list for PBXNativeTarget "Rock BusterTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +497,7 @@
 				429D960E18624D7F008B524D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
