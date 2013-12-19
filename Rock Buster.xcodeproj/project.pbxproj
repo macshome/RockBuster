@@ -13,14 +13,14 @@
 		429D95E418624D7F008B524D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D95E318624D7F008B524D /* main.m */; };
 		429D95E818624D7F008B524D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 429D95E618624D7F008B524D /* Credits.rtf */; };
 		429D95EA18624D7F008B524D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 429D95E918624D7F008B524D /* MainMenu.xib */; };
-		429D95EC18624D7F008B524D /* JRWMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D95EB18624D7F008B524D /* JRWMyScene.m */; };
+		429D95EC18624D7F008B524D /* JRWMainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D95EB18624D7F008B524D /* JRWMainScene.m */; };
 		429D95EF18624D7F008B524D /* JRWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D95EE18624D7F008B524D /* JRWAppDelegate.m */; };
-		429D95F218624D7F008B524D /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 429D95F118624D7F008B524D /* Spaceship.png */; };
 		429D95F418624D7F008B524D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 429D95F318624D7F008B524D /* Images.xcassets */; };
 		429D95FB18624D7F008B524D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95FA18624D7F008B524D /* XCTest.framework */; };
 		429D95FC18624D7F008B524D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D518624D7F008B524D /* Cocoa.framework */; };
 		429D960418624D7F008B524D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 429D960218624D7F008B524D /* InfoPlist.strings */; };
 		429D960618624D7F008B524D /* Rock_BusterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D960518624D7F008B524D /* Rock_BusterTests.m */; };
+		429D961018624E87008B524D /* art.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 429D960F18624E87008B524D /* art.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,17 +46,17 @@
 		429D95E518624D7F008B524D /* Rock Buster-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rock Buster-Prefix.pch"; sourceTree = "<group>"; };
 		429D95E718624D7F008B524D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		429D95E918624D7F008B524D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		429D95EB18624D7F008B524D /* JRWMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRWMyScene.m; sourceTree = "<group>"; };
-		429D95ED18624D7F008B524D /* JRWMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRWMyScene.h; sourceTree = "<group>"; };
+		429D95EB18624D7F008B524D /* JRWMainScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRWMainScene.m; sourceTree = "<group>"; };
+		429D95ED18624D7F008B524D /* JRWMainScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRWMainScene.h; sourceTree = "<group>"; };
 		429D95EE18624D7F008B524D /* JRWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRWAppDelegate.m; sourceTree = "<group>"; };
 		429D95F018624D7F008B524D /* JRWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRWAppDelegate.h; sourceTree = "<group>"; };
-		429D95F118624D7F008B524D /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		429D95F318624D7F008B524D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		429D95F918624D7F008B524D /* Rock BusterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rock BusterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		429D95FA18624D7F008B524D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		429D960118624D7F008B524D /* Rock BusterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Rock BusterTests-Info.plist"; sourceTree = "<group>"; };
 		429D960318624D7F008B524D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		429D960518624D7F008B524D /* Rock_BusterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Rock_BusterTests.m; sourceTree = "<group>"; };
+		429D960F18624E87008B524D /* art.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = art.atlas; path = "Rock Buster/art.atlas"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +84,7 @@
 		429D95C918624D7F008B524D = {
 			isa = PBXGroup;
 			children = (
+				429D960F18624E87008B524D /* art.atlas */,
 				429D95DD18624D7F008B524D /* Rock Buster */,
 				429D95FF18624D7F008B524D /* Rock BusterTests */,
 				429D95D418624D7F008B524D /* Frameworks */,
@@ -125,11 +126,10 @@
 			isa = PBXGroup;
 			children = (
 				429D95E918624D7F008B524D /* MainMenu.xib */,
-				429D95EB18624D7F008B524D /* JRWMyScene.m */,
-				429D95ED18624D7F008B524D /* JRWMyScene.h */,
+				429D95EB18624D7F008B524D /* JRWMainScene.m */,
+				429D95ED18624D7F008B524D /* JRWMainScene.h */,
 				429D95EE18624D7F008B524D /* JRWAppDelegate.m */,
 				429D95F018624D7F008B524D /* JRWAppDelegate.h */,
-				429D95F118624D7F008B524D /* Spaceship.png */,
 				429D95F318624D7F008B524D /* Images.xcassets */,
 				429D95DE18624D7F008B524D /* Supporting Files */,
 			);
@@ -242,7 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				429D95F218624D7F008B524D /* Spaceship.png in Resources */,
+				429D961018624E87008B524D /* art.atlas in Resources */,
 				429D95F418624D7F008B524D /* Images.xcassets in Resources */,
 				429D95E218624D7F008B524D /* InfoPlist.strings in Resources */,
 				429D95E818624D7F008B524D /* Credits.rtf in Resources */,
@@ -265,7 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				429D95EC18624D7F008B524D /* JRWMyScene.m in Sources */,
+				429D95EC18624D7F008B524D /* JRWMainScene.m in Sources */,
 				429D95EF18624D7F008B524D /* JRWAppDelegate.m in Sources */,
 				429D95E418624D7F008B524D /* main.m in Sources */,
 			);
@@ -351,6 +351,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SPRITEKIT_TEXTURE_ATLAS_FORMAT = RGBA8888_PNG;
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 			};
 			name = Debug;
 		};
@@ -382,6 +384,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
+				SPRITEKIT_TEXTURE_ATLAS_FORMAT = RGBA8888_PNG;
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 			};
 			name = Release;
 		};

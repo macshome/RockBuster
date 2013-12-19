@@ -8,6 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface JRWMyScene : SKScene
+@interface JRWMainScene : SKScene
 
 @end

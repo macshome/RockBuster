@@ -6,24 +6,24 @@
 //  Copyright (c) 2013 Me. All rights reserved.
 //
 
-#import "JRWMyScene.h"
+#import "JRWMainScene.h"
 
-@implementation JRWMyScene
+@implementation JRWMainScene
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        self.backgroundColor = [SKColor blackColor];
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:myLabel];
+//        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+//        
+//        myLabel.text = @"Hello, World!";
+//        myLabel.fontSize = 65;
+//        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+//                                       CGRectGetMidY(self.frame));
+//        
+//        [self addChild:myLabel];
     }
     return self;
 }
