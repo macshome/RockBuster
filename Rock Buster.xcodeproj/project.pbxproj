@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4263B8761864AA2700EE423A /* JRWGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263B8751864AA2700EE423A /* JRWGameScene.m */; };
 		426F71391862925E00ABA3C3 /* JRWShipSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F71381862925E00ABA3C3 /* JRWShipSprite.m */; };
 		426F713C1862927400ABA3C3 /* JRWRockSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F713B1862927400ABA3C3 /* JRWRockSprite.m */; };
 		429D95D618624D7F008B524D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D518624D7F008B524D /* Cocoa.framework */; };
@@ -15,7 +16,7 @@
 		429D95E418624D7F008B524D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D95E318624D7F008B524D /* main.m */; };
 		429D95E818624D7F008B524D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 429D95E618624D7F008B524D /* Credits.rtf */; };
 		429D95EA18624D7F008B524D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 429D95E918624D7F008B524D /* MainMenu.xib */; };
-		429D95EC18624D7F008B524D /* JRWMainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D95EB18624D7F008B524D /* JRWMainScene.m */; };
+		429D95EC18624D7F008B524D /* JRWTitleScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D95EB18624D7F008B524D /* JRWTitleScene.m */; };
 		429D95EF18624D7F008B524D /* JRWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D95EE18624D7F008B524D /* JRWAppDelegate.m */; };
 		429D95F418624D7F008B524D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 429D95F318624D7F008B524D /* Images.xcassets */; };
 		429D95FB18624D7F008B524D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95FA18624D7F008B524D /* XCTest.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4263B8741864AA2700EE423A /* JRWGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWGameScene.h; sourceTree = "<group>"; };
+		4263B8751864AA2700EE423A /* JRWGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWGameScene.m; sourceTree = "<group>"; };
 		426F71371862925E00ABA3C3 /* JRWShipSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWShipSprite.h; sourceTree = "<group>"; };
 		426F71381862925E00ABA3C3 /* JRWShipSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWShipSprite.m; sourceTree = "<group>"; };
 		426F713A1862927400ABA3C3 /* JRWRockSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWRockSprite.h; sourceTree = "<group>"; };
@@ -52,8 +55,8 @@
 		429D95E518624D7F008B524D /* Rock Buster-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rock Buster-Prefix.pch"; sourceTree = "<group>"; };
 		429D95E718624D7F008B524D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		429D95E918624D7F008B524D /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		429D95EB18624D7F008B524D /* JRWMainScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRWMainScene.m; sourceTree = "<group>"; };
-		429D95ED18624D7F008B524D /* JRWMainScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRWMainScene.h; sourceTree = "<group>"; };
+		429D95EB18624D7F008B524D /* JRWTitleScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRWTitleScene.m; sourceTree = "<group>"; };
+		429D95ED18624D7F008B524D /* JRWTitleScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRWTitleScene.h; sourceTree = "<group>"; };
 		429D95EE18624D7F008B524D /* JRWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRWAppDelegate.m; sourceTree = "<group>"; };
 		429D95F018624D7F008B524D /* JRWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRWAppDelegate.h; sourceTree = "<group>"; };
 		429D95F318624D7F008B524D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -132,8 +135,10 @@
 			isa = PBXGroup;
 			children = (
 				429D95E918624D7F008B524D /* MainMenu.xib */,
-				429D95ED18624D7F008B524D /* JRWMainScene.h */,
-				429D95EB18624D7F008B524D /* JRWMainScene.m */,
+				429D95ED18624D7F008B524D /* JRWTitleScene.h */,
+				429D95EB18624D7F008B524D /* JRWTitleScene.m */,
+				4263B8741864AA2700EE423A /* JRWGameScene.h */,
+				4263B8751864AA2700EE423A /* JRWGameScene.m */,
 				429D95F018624D7F008B524D /* JRWAppDelegate.h */,
 				429D95EE18624D7F008B524D /* JRWAppDelegate.m */,
 				429D95F318624D7F008B524D /* Images.xcassets */,
@@ -275,9 +280,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4263B8761864AA2700EE423A /* JRWGameScene.m in Sources */,
 				426F71391862925E00ABA3C3 /* JRWShipSprite.m in Sources */,
 				426F713C1862927400ABA3C3 /* JRWRockSprite.m in Sources */,
-				429D95EC18624D7F008B524D /* JRWMainScene.m in Sources */,
+				429D95EC18624D7F008B524D /* JRWTitleScene.m in Sources */,
 				429D95EF18624D7F008B524D /* JRWAppDelegate.m in Sources */,
 				429D95E418624D7F008B524D /* main.m in Sources */,
 			);

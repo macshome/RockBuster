@@ -7,7 +7,8 @@
 //
 
 #import "JRWAppDelegate.h"
-#import "JRWMainScene.h"
+#import "JRWTitleScene.h"
+#import "JRWGameScene.h"
 
 @implementation JRWAppDelegate
 
@@ -15,15 +16,18 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     /* Pick a size for the scene */
-    JRWMainScene *scene = [JRWMainScene sceneWithSize:CGSizeMake(1024, 768)];
+    JRWTitleScene *scene = [JRWTitleScene sceneWithSize:CGSizeMake(1024, 768)];
 
     /* Set the scale mode to scale to fit the window */
     scene.scaleMode = SKSceneScaleModeAspectFit;
 
     [self.skView presentScene:scene];
 
+#if DEBUG
     self.skView.showsFPS = YES;
     self.skView.showsNodeCount = YES;
+#endif
+    
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {

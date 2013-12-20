@@ -7,7 +7,7 @@
 //
 
 #import "JRWShipSprite.h"
-#import "JRWMainScene.h"
+#import "JRWTitleScene.h"
 
 @implementation JRWShipSprite
 

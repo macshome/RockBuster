@@ -8,7 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface JRWMainScene : SKScene <SKPhysicsContactDelegate>
+@interface JRWTitleScene : SKScene 
 
 
 @end

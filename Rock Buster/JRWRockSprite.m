@@ -20,6 +20,7 @@ static inline int randRock(int high) {
 + (instancetype)createRandomRock {
     //  We have 5 rock types, pick a random one.
     JRWRockSprite *rock = [JRWRockSprite spriteNodeWithTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"asteroid_%i", randRock(4)]]];
+  
     return rock;
 }
 
