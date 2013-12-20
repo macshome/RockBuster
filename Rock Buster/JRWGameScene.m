@@ -50,6 +50,8 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
     /* Setup your scene here */
     self.backgroundColor = [SKColor blackColor];
+    [self addShipUsingTransition:NO];
+    [self addHUD];
     
     //  Set to level 1
     self.level = 3;
@@ -65,18 +67,24 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
 }
 
-- (void)addShip {
+- (void)addShipUsingTransition:(BOOL) useTransition {
     if (!self.ship) {
+        
         self.ship = [JRWShipSprite createShip];
         self.ship.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        
+        if (!useTransition) {
+            [self.ship setScale:.20];
+            [self addChild:self.ship];
+        } else {
+     
         self.ship.alpha = 0;
         SKAction *zoom = [SKAction scaleTo:.20 duration:1.0];
         SKAction *fadeIn = [SKAction fadeInWithDuration:1.0];
         SKAction *dropIn = [SKAction group:@[zoom, fadeIn]];
         [self addChild:self.ship];
-        [self.ship runAction:dropIn completion:^{
-            [self addHUD];
-        }];
+        [self.ship runAction:dropIn];
+        }
     }
     
 }

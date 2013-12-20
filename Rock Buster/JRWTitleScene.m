@@ -62,9 +62,14 @@
     self.startTextNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
     
     return self.startTextNode;
+    
 }
 
-
+- (void)presentGameScene {
+    JRWGameScene *gameScene = [[JRWGameScene alloc] initWithSize:self.size];
+    SKTransition *transition = [SKTransition doorwayWithDuration:1.0];
+    [self.view presentScene:gameScene transition:transition];
+}
 
 
 
@@ -77,6 +82,7 @@
             unichar character = [characters characterAtIndex:s];
             switch (character) {
                 case '1':
+                    [self presentGameScene];
                     break;
             }
         }
