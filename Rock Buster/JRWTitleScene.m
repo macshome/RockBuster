@@ -42,11 +42,6 @@
     /* Setup your scene here */
     self.backgroundColor = [SKColor blackColor];
     
-    //  Preload the textures
-    SKTextureAtlas *artAtlas = [SKTextureAtlas atlasNamed:@"art"];
-    [artAtlas preloadWithCompletionHandler:^{
-        NSLog(@"Loaded art atlas");
-    }];
     
     //  Add the start text
     [self addChild:[self addStartText]];
