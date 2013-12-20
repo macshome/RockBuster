@@ -10,6 +10,15 @@
 
 @interface JRWShipSprite : SKSpriteNode
 
+//  Class method to make a new ship
 + (instancetype)createShip;
+
+// methods used to control the ship.
+- (void)activateMainEngine;
+- (void)deactivateMainEngine;
+- (void)reverseThrust;
+- (void)rotateShipLeft;
+- (void)rotateShipRight;
+- (void)attemptMissileLaunch:(NSTimeInterval)currentTime;
 
 @end

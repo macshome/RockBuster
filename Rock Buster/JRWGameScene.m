@@ -22,8 +22,8 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 
 @property JRWShipSprite *ship;
 @property NSMutableArray *rockArray;
-@property int level;
 
+@property int level;
 @property BOOL contentCreated;
 @end
 
@@ -50,7 +50,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
     /* Setup your scene here */
     self.backgroundColor = [SKColor blackColor];
-    [self addShipUsingTransition:NO];
+    [self addShipShouldUseTransition:NO];
     [self addHUD];
     
     //  Set to level 1
@@ -67,7 +67,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
 }
 
-- (void)addShipUsingTransition:(BOOL) useTransition {
+- (void)addShipShouldUseTransition:(BOOL) useTransition {
     if (!self.ship) {
         
         self.ship = [JRWShipSprite createShip];
@@ -104,6 +104,111 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
         [self addChild:rock];
     }
     
+}
+
+- (void)update:(NSTimeInterval)currentTime
+{
+    // This runs once every frame. Other sorts of logic might run from here. For example,
+    // if the target ship was controlled by the computer, you might run AI from this routine.
+    
+    [self updatePlayerShip:currentTime];
+}
+
+- (void)updatePlayerShip:(NSTimeInterval)currentTime
+{
+    /*
+     Use the stored key information to control the ship.
+     */
+    
+    if (actions[kPlayerForward])
+    {
+        [self.ship activateMainEngine];
+    }
+    else
+    {
+        [self.ship deactivateMainEngine];
+    }
+    
+    if (actions[kPlayerBack])
+    {
+        [self.ship reverseThrust];
+    }
+    
+    if (actions[kPlayerLeft])
+    {
+        [self.ship rotateShipLeft];
+    }
+    
+    if (actions[kPlayerRight])
+    {
+        [self.ship rotateShipRight];
+    }
+    
+    if (actions[kPlayerAction])
+    {
+        [self.ship attemptMissileLaunch:currentTime];
+    }
+}
+
+- (void)keyDown:(NSEvent *)theEvent
+{
+    /*
+     Convert key down events into game actions
+     */
+    
+    // first we check the arrow keys since they are on the numeric keypad
+    if ([theEvent modifierFlags] & NSNumericPadKeyMask)
+    { // arrow keys have this mask
+        NSString *theArrow = [theEvent charactersIgnoringModifiers];
+        unichar keyChar = 0;
+        if ( [theArrow length] == 1 ) {
+            keyChar = [theArrow characterAtIndex:0];
+            switch (keyChar) {
+                case NSLeftArrowFunctionKey:
+                    actions[kPlayerLeft] = YES;
+                    break;
+                case NSRightArrowFunctionKey:
+                    actions[kPlayerRight] = YES;
+                    break;
+                case NSUpArrowFunctionKey:
+                    actions[kPlayerForward] = YES;
+                    break;
+                case NSDownArrowFunctionKey:
+                    actions[kPlayerBack] = YES;
+                    break;
+            }
+        }
+    }
+}
+
+- (void)keyUp:(NSEvent *)theEvent
+{
+    /*
+     Convert key up events into game actions
+     */
+    
+    if ([theEvent modifierFlags] & NSNumericPadKeyMask)
+    {
+        NSString *theArrow = [theEvent charactersIgnoringModifiers];
+        unichar keyChar = 0;
+        if ( [theArrow length] == 1 ) {
+            keyChar = [theArrow characterAtIndex:0];
+            switch (keyChar) {
+                case NSLeftArrowFunctionKey:
+                    actions[kPlayerLeft] = NO;
+                    break;
+                case NSRightArrowFunctionKey:
+                    actions[kPlayerRight] = NO;
+                    break;
+                case NSUpArrowFunctionKey:
+                    actions[kPlayerForward] = NO;
+                    break;
+                case NSDownArrowFunctionKey:
+                    actions[kPlayerBack] = NO;
+                    break;
+            }
+        }
+    }
 }
 
 
