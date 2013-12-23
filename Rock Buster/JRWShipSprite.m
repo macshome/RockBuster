@@ -26,7 +26,7 @@ static const CGFloat missileLaunchImpulse = 0.5;
     
     ship.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:ship.size];
     ship.physicsBody.mass = 3;
-    ship.physicsBody.linearDamping = .8;
+    ship.physicsBody.linearDamping = .7;
     return ship;
 }
 

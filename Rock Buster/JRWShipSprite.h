@@ -16,7 +16,7 @@
 // methods used to control the ship.
 - (void)activateMainEngine;
 - (void)deactivateMainEngine;
-- (void)reverseThrust;
+- (void)hyperspace;
 - (void)rotateShipLeft;
 - (void)rotateShipRight;
 - (void)attemptMissileLaunch:(NSTimeInterval)currentTime;

@@ -10,6 +10,7 @@
 #import "JRWShipSprite.h"
 #import "JRWRockSprite.h"
 
+//  Some random number functions
 static inline CGFloat skRandf() {
     return arc4random() / (CGFloat) RAND_MAX;
 }
@@ -24,6 +25,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 @property NSMutableArray *rockArray;
 
 @property int level;
+@property int score;
 @property BOOL contentCreated;
 @end
 
@@ -50,11 +52,13 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
     /* Setup your scene here */
     self.backgroundColor = [SKColor blackColor];
-    [self addShipShouldUseTransition:NO];
-    [self addHUD];
     
     //  Set to level 1
-    self.level = 3;
+    self.level = 1;
+    
+    //  Add the sprites
+    [self addShipShouldUseTransition:NO];
+    [self addHUD];
     
     //  Set gravity
     self.physicsWorld.gravity = CGVectorMake(0, 0);
@@ -63,10 +67,28 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
 }
 
+//  Add the HUD
 - (void)addHUD {
+    SKLabelNode *levelLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
+    levelLabel.name = @"level";
+    levelLabel.text = [NSString stringWithFormat:@"Level %i", self.level];
+    levelLabel.fontSize = 24;
+    levelLabel.position = CGPointMake(CGRectGetMinX(self.frame) + 50, CGRectGetMaxY(self.frame) -30);
+    levelLabel.zPosition = 1;
+    
+    SKLabelNode *scoreLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
+    scoreLabel.name = @"score";
+    scoreLabel.text = [NSString stringWithFormat:@"Score: %i", self.score];
+    scoreLabel.fontSize = 24;
+    scoreLabel.position = CGPointMake(CGRectGetMaxX(self.frame) - 50, CGRectGetMaxY(self.frame) -30);
+    scoreLabel.zPosition = 1;
+    
+    [self addChild:levelLabel];
+    [self addChild:scoreLabel];
     
 }
 
+//  Add a ship. The transition is for when adding a new ship to an existing game
 - (void)addShipShouldUseTransition:(BOOL) useTransition {
     if (!self.ship) {
         
@@ -99,25 +121,50 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
         rock.physicsBody.usesPreciseCollisionDetection = YES;
         rock.physicsBody.mass = 3;
         [rock.physicsBody applyTorque:10.0];
-//        [rock.physicsBody app]
         [self.rockArray addObject:rock];
         [self addChild:rock];
     }
     
 }
 
+#pragma mark - Game updates and logic
 - (void)update:(NSTimeInterval)currentTime
 {
-    // This runs once every frame. Other sorts of logic might run from here. For example,
-    // if the target ship was controlled by the computer, you might run AI from this routine.
+    // This runs once every frame.
     
     [self updatePlayerShip:currentTime];
+    [self updateSpritePositions];
 }
 
+//  Do we need to loop a sprite to the other side of the scene?
+- (void)updateSpritePositions {
+    //  Get the current possition
+    CGPoint shipPosition = CGPointMake(self.ship.position.x, self.ship.position.y);
+    
+    //  If we've gone beyond the edge warp to the other side.
+    if (shipPosition.x > (CGRectGetMaxX(self.frame) + 10)) {
+        self.ship.position = CGPointMake((CGRectGetMinX(self.frame) - 5), shipPosition.y);
+    }
+    
+    if (shipPosition.x < (CGRectGetMinX(self.frame) - 10)) {
+        self.ship.position = CGPointMake((CGRectGetMaxX(self.frame) + 5), shipPosition.y);
+    }
+    
+    if (shipPosition.y > (CGRectGetMaxY(self.frame) + 10)) {
+        self.ship.position = CGPointMake(shipPosition.x, (CGRectGetMinY(self.frame) - 5));
+    }
+    
+    if (shipPosition.y < (CGRectGetMinY(self.frame) - 10)) {
+        self.ship.position = CGPointMake(shipPosition.x, (CGRectGetMaxY(self.frame) + 5));
+    }
+    
+}
+
+//  Ship controls
 - (void)updatePlayerShip:(NSTimeInterval)currentTime
 {
     /*
-     Use the stored key information to control the ship.
+     Use the stored key information to control the ship. (Grabbed this from Apple sample code.)
      */
     
     if (actions[kPlayerForward])
@@ -131,7 +178,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
     if (actions[kPlayerBack])
     {
-        [self.ship reverseThrust];
+        [self.ship hyperspace];
     }
     
     if (actions[kPlayerLeft])
