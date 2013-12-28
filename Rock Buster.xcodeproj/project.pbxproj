@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42144A19186E40770052C7B0 /* JRWHUDSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 42144A18186E40770052C7B0 /* JRWHUDSprite.m */; };
 		4263B8761864AA2700EE423A /* JRWGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263B8751864AA2700EE423A /* JRWGameScene.m */; };
 		426F71391862925E00ABA3C3 /* JRWShipSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F71381862925E00ABA3C3 /* JRWShipSprite.m */; };
 		426F713C1862927400ABA3C3 /* JRWRockSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F713B1862927400ABA3C3 /* JRWRockSprite.m */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42144A17186E40770052C7B0 /* JRWHUDSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWHUDSprite.h; sourceTree = "<group>"; };
+		42144A18186E40770052C7B0 /* JRWHUDSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWHUDSprite.m; sourceTree = "<group>"; };
 		4263B8741864AA2700EE423A /* JRWGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWGameScene.h; sourceTree = "<group>"; };
 		4263B8751864AA2700EE423A /* JRWGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWGameScene.m; sourceTree = "<group>"; };
 		426F71371862925E00ABA3C3 /* JRWShipSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWShipSprite.h; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 				426F713B1862927400ABA3C3 /* JRWRockSprite.m */,
 				429D95F318624D7F008B524D /* Images.xcassets */,
 				429D95DE18624D7F008B524D /* Supporting Files */,
+				42144A17186E40770052C7B0 /* JRWHUDSprite.h */,
+				42144A18186E40770052C7B0 /* JRWHUDSprite.m */,
 			);
 			path = "Rock Buster";
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4263B8761864AA2700EE423A /* JRWGameScene.m in Sources */,
+				42144A19186E40770052C7B0 /* JRWHUDSprite.m in Sources */,
 				426F71391862925E00ABA3C3 /* JRWShipSprite.m in Sources */,
 				426F713C1862927400ABA3C3 /* JRWRockSprite.m in Sources */,
 				429D95EC18624D7F008B524D /* JRWTitleScene.m in Sources */,

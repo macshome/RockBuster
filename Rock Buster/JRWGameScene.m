@@ -22,11 +22,17 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 @interface JRWGameScene ()
 
 @property JRWShipSprite *ship;
+@property SKSpriteNode *hyperspaceBar;
+
 @property NSMutableArray *rockArray;
 
-@property int level;
-@property int score;
+@property NSNumber *level;
+@property NSNumber *score;
 @property BOOL contentCreated;
+@property BOOL hyperspaceOK;
+
+@property int hyperspaceCount;
+
 @end
 
 @implementation JRWGameScene
@@ -54,11 +60,14 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     self.backgroundColor = [SKColor blackColor];
     
     //  Set to level 1
-    self.level = 1;
+    self.level = @1;
+    self.score = @0;
+    self.hyperspaceOK = NO;
     
     //  Add the sprites
     [self addShipShouldUseTransition:NO];
     [self addHUD];
+    [self updateHyperspaceTimer];
     
     //  Set gravity
     self.physicsWorld.gravity = CGVectorMake(0, 0);
@@ -69,22 +78,39 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 
 //  Add the HUD
 - (void)addHUD {
+    SKNode *hud = [[SKNode alloc] init];
+    hud.zPosition = 1;
+    
     SKLabelNode *levelLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
     levelLabel.name = @"level";
-    levelLabel.text = [NSString stringWithFormat:@"Level %i", self.level];
+    levelLabel.text = [NSString stringWithFormat:@"Level %@", self.level];
     levelLabel.fontSize = 24;
     levelLabel.position = CGPointMake(CGRectGetMinX(self.frame) + 50, CGRectGetMaxY(self.frame) -30);
-    levelLabel.zPosition = 1;
     
     SKLabelNode *scoreLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
     scoreLabel.name = @"score";
-    scoreLabel.text = [NSString stringWithFormat:@"Score: %i", self.score];
+    scoreLabel.text = [NSString stringWithFormat:@"Score: %@", self.score];
     scoreLabel.fontSize = 24;
     scoreLabel.position = CGPointMake(CGRectGetMaxX(self.frame) - 50, CGRectGetMaxY(self.frame) -30);
-    scoreLabel.zPosition = 1;
     
-    [self addChild:levelLabel];
-    [self addChild:scoreLabel];
+    
+    self.hyperspaceBar = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(0, 21)];
+    self.hyperspaceBar.name = @"hyperspaceBar";
+    self.hyperspaceBar.anchorPoint = CGPointMake(0.0, 0.5);
+    self.hyperspaceBar.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame) - 20);
+    SKLabelNode *hbarLabel = [SKLabelNode labelNodeWithFontNamed:@"Futura"];
+    hbarLabel.name = @"hyperspaceLabel";
+    hbarLabel.text = @"Hyperdrive:";
+    hbarLabel.fontSize = 24;
+    hbarLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
+    hbarLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
+    [self.hyperspaceBar addChild:hbarLabel];
+    
+    [hud addChild:levelLabel];
+    [hud addChild:scoreLabel];
+    [hud addChild:self.hyperspaceBar];
+    
+    [self addChild:hud];
     
 }
 
@@ -107,13 +133,15 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
         [self addChild:self.ship];
         [self.ship runAction:dropIn];
         }
+        
+        
     }
     
 }
 
 - (void)addRock {
     //  How many rocks are there? Make that many asteroids
-    for (int i = 0; i <= self.level; i++) {
+    for (int i = 0; i <= (int)self.level; i++) {
         JRWRockSprite *rock = [JRWRockSprite createRandomRock];
         rock.position = CGPointMake(skRand(0, self.size.width), skRand(0, self.size.height));
         rock.name = [NSString stringWithFormat:@"rock_%i", i];
@@ -124,6 +152,45 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
         [self.rockArray addObject:rock];
         [self addChild:rock];
     }
+    
+}
+
+//  Hyperspace removes the ship then makes it appear at a random place
+- (void)hyperspace {
+    
+    if (self.hyperspaceOK) {
+        self.ship.zPosition = -1;
+        self.ship.alpha = 0;
+        self.ship.position = CGPointMake(skRand(0, self.size.width), skRand(0, self.size.height));
+        self.ship.zPosition = 0;
+        self.ship.alpha = 1;
+        [self resetHyperspaceTimer];
+        
+    }
+    
+}
+
+
+- (void)updateHyperspaceTimer {
+    self.hyperspaceBar.color = [SKColor redColor];
+    SKAction *hyperspaceBarGrow = [SKAction resizeToWidth:100.0 duration:10.0];
+    [self.hyperspaceBar runAction:hyperspaceBarGrow completion:^{
+        self.hyperspaceOK = YES;
+        self.hyperspaceBar.color = [SKColor greenColor];
+    }];
+    
+}
+
+//  Set the hyperspace timer back to 0
+- (void)resetHyperspaceTimer {
+    self.hyperspaceOK = NO;
+    
+    self.hyperspaceBar.color = [SKColor yellowColor];
+    SKAction *hyperspaceBarShrink = [SKAction resizeToWidth:0.0 duration:0.25];
+    [self.hyperspaceBar runAction:hyperspaceBarShrink completion:^{
+        [self updateHyperspaceTimer];
+    }];
+    
     
 }
 
@@ -178,7 +245,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
     if (actions[kPlayerBack])
     {
-        [self.ship hyperspace];
+        [self hyperspace];
     }
     
     if (actions[kPlayerLeft])

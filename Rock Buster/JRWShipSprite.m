@@ -37,6 +37,8 @@ static const CGFloat missileLaunchImpulse = 0.5;
     return self.zRotation + M_PI_2;
 }
 
+
+
 - (void)activateMainEngine
 {
     /*
