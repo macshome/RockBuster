@@ -122,12 +122,11 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
         self.ship.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         
         if (!useTransition) {
-            [self.ship setScale:.20];
             [self addChild:self.ship];
         } else {
      
         self.ship.alpha = 0;
-        SKAction *zoom = [SKAction scaleTo:.20 duration:1.0];
+        SKAction *zoom = [SKAction  scaleTo:1.0 duration:1.0];
         SKAction *fadeIn = [SKAction fadeInWithDuration:1.0];
         SKAction *dropIn = [SKAction group:@[zoom, fadeIn]];
         [self addChild:self.ship];
@@ -155,15 +154,54 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
 }
 
+- (SKNode*) addMissile
+{
+
+    SKSpriteNode *missile = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"missile.png"]];
+    
+    
+    CGFloat offsetX = missile.frame.size.width * missile.anchorPoint.x;
+    CGFloat offsetY = missile.frame.size.height * missile.anchorPoint.y;
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    CGPathMoveToPoint(path, NULL, 3 - offsetX, 14 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 1 - offsetX, 9 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 1 - offsetX, 0 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 4 - offsetX, 0 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 4 - offsetX, 10 - offsetY);
+
+    
+    CGPathCloseSubpath(path);
+    
+    missile.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
+    missile.physicsBody.usesPreciseCollisionDetection = YES;
+    missile.physicsBody.linearDamping = 0.0;
+    
+    
+#if SHOW_SHIP_PHYSICS_OVERLAY
+    SKShapeNode *shipOverlayShape = [[SKShapeNode alloc] init];
+    shipOverlayShape.path = path;
+    shipOverlayShape.strokeColor = [SKColor clearColor];
+    shipOverlayShape.fillColor = [SKColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5];
+    [missile addChild:shipOverlayShape];
+#endif
+    
+    CGPathRelease(path);
+    return missile;
+}
+
 //  Hyperspace removes the ship then makes it appear at a random place
 - (void)hyperspace {
     
     if (self.hyperspaceOK) {
         self.ship.zPosition = -1;
-        self.ship.alpha = 0;
+        SKAction *fadeOut = [SKAction fadeOutWithDuration:0.25];
+        [self.ship runAction:fadeOut];
         self.ship.position = CGPointMake(skRand(0, self.size.width), skRand(0, self.size.height));
+        SKAction *fadeIn = [SKAction fadeInWithDuration:0.25];
+        [self.ship runAction:fadeIn];
         self.ship.zPosition = 0;
-        self.ship.alpha = 1;
         [self resetHyperspaceTimer];
         
     }
@@ -201,6 +239,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
     [self updatePlayerShip:currentTime];
     [self updateSpritePositions];
+    [self shipSpeedLimit];
 }
 
 //  Do we need to loop a sprite to the other side of the scene?
@@ -225,6 +264,24 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
         self.ship.position = CGPointMake(shipPosition.x, (CGRectGetMaxY(self.frame) + 5));
     }
     
+}
+
+//  Speed limiter
+- (void)shipSpeedLimit {
+    
+    //  Check the x velocity
+    if (self.ship.physicsBody.velocity.dx > 500) {
+        self.ship.physicsBody.velocity = CGVectorMake(500, self.ship.physicsBody.velocity.dy);
+    } else if (self.ship.physicsBody.velocity.dx < -500) {
+        self.ship.physicsBody.velocity = CGVectorMake(-500, self.ship.physicsBody.velocity.dy);
+    }
+    
+    //  Check the y velocity
+    if (self.ship.physicsBody.velocity.dy > 500) {
+        self.ship.physicsBody.velocity = CGVectorMake(self.ship.physicsBody.velocity.dx, 500);
+    } else if (self.ship.physicsBody.velocity.dy < -500) {
+        self.ship.physicsBody.velocity = CGVectorMake(self.ship.physicsBody.velocity.dx, -500);
+    }
 }
 
 //  Ship controls
@@ -262,6 +319,8 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     {
         [self.ship attemptMissileLaunch:currentTime];
     }
+    
+ 
 }
 
 - (void)keyDown:(NSEvent *)theEvent
@@ -293,7 +352,40 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
             }
         }
     }
+    
+    // and now we check the keyboard
+    NSString *characters = [theEvent characters];
+    if ([characters length]) {
+        for (int s = 0; s<[characters length]; s++) {
+            unichar character = [characters characterAtIndex:s];
+            switch (character) {
+                case 'w':
+                    actions[kPlayerForward] = YES;
+                    break;
+                case 'a':
+                    actions[kPlayerLeft] = YES;
+                    break;
+                case 'd':
+                    actions[kPlayerRight] = YES;
+                    break;
+                case 's':
+                    actions[kPlayerBack] = YES;
+                    break;
+                case ' ':
+                    actions[kPlayerAction] = YES;
+                    break;
+                case 'r':
+//                {
+//                    APLSpaceScene *reset = [[APLSpaceScene alloc] initWithSize: self.frame.size];
+//                    [self.view presentScene:reset transition:[SKTransition flipVerticalWithDuration:0.35]];
+//                }
+                    break;
+            }
+        }
+    }
 }
+
+
 
 - (void)keyUp:(NSEvent *)theEvent
 {
@@ -320,10 +412,37 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
                 case NSDownArrowFunctionKey:
                     actions[kPlayerBack] = NO;
                     break;
+                case ' ':
+                    actions[kPlayerAction] = YES;
+                    break;
+            }
+        }
+    }
+    NSString *characters = [theEvent characters];
+    if ([characters length]) {
+        for (int s = 0; s<[characters length]; s++) {
+            unichar character = [characters characterAtIndex:s];
+            switch (character) {
+                case 'w':
+                    actions[kPlayerForward] = NO;
+                    break;
+                case 'a':
+                    actions[kPlayerLeft] = NO;
+                    break;
+                case 'd':
+                    actions[kPlayerRight] = NO;
+                    break;
+                case 's':
+                    actions[kPlayerBack] = NO;
+                    break;
+                case ' ':
+                    actions[kPlayerAction] = NO;
+                    break;
             }
         }
     }
 }
+
 
 
 

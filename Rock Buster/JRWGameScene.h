@@ -8,6 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+#define SHOW_SHIP_PHYSICS_OVERLAY 0
+
 // These constants are used to map keyboard events into player events.
 typedef enum {
     kPlayerForward = 0,
@@ -29,5 +31,7 @@ static const uint32_t edgeCategory     =  0x1 << 4;
 {
     BOOL     actions[kNumPlayerActions];
 }
+
+- (SKNode*) addMissile;
 
 @end

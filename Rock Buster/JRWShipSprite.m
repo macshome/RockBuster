@@ -8,25 +8,58 @@
 
 #import "JRWShipSprite.h"
 #import "JRWTitleScene.h"
+#import "JRWGameScene.h"
+
+
 
 // Used to control the ship, usually by applying physics forces to the ship.
-static const CGFloat mainEngineThrust = 2000;
-static const CGFloat reverseThrust = 1;
+static const CGFloat mainEngineThrust = 1000;
 static const CGFloat lateralThrust = 10;
 static const CGFloat firingInterval = 0.1;
-static const CGFloat missileLaunchDistance = 45;
+static const CGFloat missileLaunchDistance = 40;
 static const CGFloat engineIdleAlpha = 0.05;
-static const CGFloat missileLaunchImpulse = 0.5;
+static const CGFloat missileLaunchImpulse = 1000.0;
+
+@interface JRWShipSprite ()
+@property CFTimeInterval timeLastFiredMissile;
+@end
 
 @implementation JRWShipSprite
 
 + (instancetype)createShip {
     JRWShipSprite *ship = [JRWShipSprite spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Spaceship"]];
+    
+    ship.anchorPoint = CGPointMake(0.5, 0.5);
+    CGFloat offsetX = ship.frame.size.width * ship.anchorPoint.x;
+    CGFloat offsetY = ship.frame.size.height * ship.anchorPoint.y;
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    
+    CGPathMoveToPoint(path, NULL, 6 - offsetX, 6 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 40 - offsetX, 0 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 70 - offsetX, 6 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 78 - offsetX, 20 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 38 - offsetX, 68 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 0 - offsetX, 20 - offsetY);
+
+    
+    CGPathCloseSubpath(path);
+    
+    ship.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
+    ship.physicsBody.mass = 1;
+    ship.physicsBody.linearDamping = .7;
+    
     ship.name = @"Ship";
     
-    ship.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:ship.size];
-    ship.physicsBody.mass = 3;
-    ship.physicsBody.linearDamping = .7;
+#if SHOW_SHIP_PHYSICS_OVERLAY
+    SKShapeNode *shipOverlayShape = [[SKShapeNode alloc] init];
+    shipOverlayShape.path = path;
+    shipOverlayShape.strokeColor = [SKColor clearColor];
+    shipOverlayShape.fillColor = [SKColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:0.5];
+    [ship addChild:shipOverlayShape];
+#endif
+    
+    CGPathRelease(path);
     return ship;
 }
 
@@ -61,21 +94,46 @@ static const CGFloat missileLaunchImpulse = 0.5;
 
 - (void)rotateShipLeft
 {
-    /*
-     Apply a small amount of thrust to turn the ship to the left. (No visible special effect).
-     */
-//    [self.physicsBody applyTorque:lateralThrust];
+
     
     self.zRotation = self.zRotation + .11;
 }
 
 - (void)rotateShipRight
 {
-    /*
-     Apply a small amount of thrust to turn the ship to the right. (No visible special effect).
-     */
-//    [self.physicsBody applyTorque:-lateralThrust];
+
     self.zRotation = self.zRotation - .11;
+}
+
+- (void)attemptMissileLaunch:(NSTimeInterval)currentTime {
+    /* Fire a missile if there's one ready */
+    
+    CFTimeInterval timeSinceLastFired = currentTime - self.timeLastFiredMissile;
+    if (timeSinceLastFired > firingInterval)
+    {
+        self.timeLastFiredMissile = currentTime;
+        
+        CGFloat shipDirection = [self shipOrientation];
+        
+        JRWGameScene *scene = (JRWGameScene *) self.scene;
+        
+        SKNode *missile = [scene addMissile];
+        missile.position = CGPointMake(self.position.x + missileLaunchDistance*cosf(shipDirection),
+                                       self.position.y + missileLaunchDistance*sinf(shipDirection));
+        
+        missile.name = @"missile";
+        missile.zRotation = self.zRotation;
+        
+        [scene addChild:missile];
+        
+        // Just using a constant speed on the missiles
+        missile.physicsBody.velocity = CGVectorMake(missileLaunchImpulse*cosf(shipDirection),
+                                                    missileLaunchImpulse*sinf(shipDirection));
+
+
+    }
+
+    
 }
 
 @end
