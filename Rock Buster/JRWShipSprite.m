@@ -26,6 +26,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
 
 @implementation JRWShipSprite
 
+#pragma mark - Ship creation
 + (instancetype)createShip {
     JRWShipSprite *ship = [JRWShipSprite spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Spaceship"]];
     
