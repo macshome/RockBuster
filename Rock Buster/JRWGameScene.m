@@ -120,7 +120,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
 }
 
-#pragma mark - Game Player Objects
+#pragma mark - Game Play Objects
 //  Add a ship. The transition is for when adding a new ship to an existing game
 - (void)addShipShouldUseTransition:(BOOL) useTransition {
     if (!self.ship) {
@@ -208,13 +208,15 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     //  If hyperspace is OK move to another z plane, move randomly, then re-appear, and move back.
     if (self.hyperspaceOK) {
         self.ship.zPosition = -1;
-        SKAction *fadeOut = [SKAction fadeOutWithDuration:0.25];
-        [self.ship runAction:fadeOut];
+        self.ship.alpha = 0.0;
+        
         self.ship.position = CGPointMake(skRand(0, self.size.width), skRand(0, self.size.height));
+        
         SKAction *fadeIn = [SKAction fadeInWithDuration:0.25];
-        [self.ship runAction:fadeIn];
-        self.ship.zPosition = 0;
-        [self resetHyperspaceTimer];
+        [self.ship runAction:fadeIn completion:^{
+            self.ship.zPosition = 0;
+            [self resetHyperspaceTimer];
+        }];
         
     }
     
