@@ -59,7 +59,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     /* Setup your scene here */
     self.backgroundColor = [SKColor blackColor];
     
-    //  Set to level 1
+    //  Set to level 1 and score to 0
     self.level = @1;
     self.score = @0;
     self.hyperspaceOK = NO;
@@ -79,21 +79,25 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 //  Add the HUD
 - (void)addHUD {
     SKNode *hud = [[SKNode alloc] init];
+    
+    //  Put the HUD above the play field so that things can move under it
     hud.zPosition = 1;
     
+    //  Level label
     SKLabelNode *levelLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
     levelLabel.name = @"level";
     levelLabel.text = [NSString stringWithFormat:@"Level %@", self.level];
     levelLabel.fontSize = 24;
     levelLabel.position = CGPointMake(CGRectGetMinX(self.frame) + 50, CGRectGetMaxY(self.frame) -30);
     
+    //  Score label
     SKLabelNode *scoreLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
     scoreLabel.name = @"score";
     scoreLabel.text = [NSString stringWithFormat:@"Score: %@", self.score];
     scoreLabel.fontSize = 24;
     scoreLabel.position = CGPointMake(CGRectGetMaxX(self.frame) - 50, CGRectGetMaxY(self.frame) -30);
     
-    
+    //  Hyperspace bar
     self.hyperspaceBar = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(0, 21)];
     self.hyperspaceBar.name = @"hyperspaceBar";
     self.hyperspaceBar.anchorPoint = CGPointMake(0.0, 0.5);
@@ -106,38 +110,42 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     hbarLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
     [self.hyperspaceBar addChild:hbarLabel];
     
+    //  Add the components to the HUD node
     [hud addChild:levelLabel];
     [hud addChild:scoreLabel];
     [hud addChild:self.hyperspaceBar];
     
+    //  Add the hud node to the scene
     [self addChild:hud];
     
 }
 
+#pragma mark - Game Player Objects
 //  Add a ship. The transition is for when adding a new ship to an existing game
 - (void)addShipShouldUseTransition:(BOOL) useTransition {
     if (!self.ship) {
         
+        //  Make a new ship and position it in the middle
         self.ship = [JRWShipSprite createShip];
         self.ship.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         
+        //  With no transsition just add the ship
         if (!useTransition) {
             [self addChild:self.ship];
         } else {
-     
-        self.ship.alpha = 0;
-        SKAction *zoom = [SKAction  scaleTo:1.0 duration:1.0];
-        SKAction *fadeIn = [SKAction fadeInWithDuration:1.0];
-        SKAction *dropIn = [SKAction group:@[zoom, fadeIn]];
-        [self addChild:self.ship];
-        [self.ship runAction:dropIn];
+            //  Transition to drop in a new ship
+            [self.ship setScale:3.0];
+            self.ship.alpha = 0;
+            SKAction *zoom = [SKAction  scaleTo:1.0 duration:1.0];
+            SKAction *fadeIn = [SKAction fadeInWithDuration:1.0];
+            SKAction *dropIn = [SKAction group:@[zoom, fadeIn]];
+            [self addChild:self.ship];
+            [self.ship runAction:dropIn];
         }
-        
-        
     }
-    
 }
 
+//  Add a rock
 - (void)addRock {
     //  How many rocks are there? Make that many asteroids
     for (int i = 0; i <= (int)self.level; i++) {
@@ -154,32 +162,33 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
 }
 
+//  Add a missile
 - (SKNode*) addMissile
 {
-
+    //  Load the texture
     SKSpriteNode *missile = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"missile.png"]];
     
-    
+    //  Offset for rotation
     CGFloat offsetX = missile.frame.size.width * missile.anchorPoint.x;
     CGFloat offsetY = missile.frame.size.height * missile.anchorPoint.y;
     
     CGMutablePathRef path = CGPathCreateMutable();
     
+    //  Make the path for the physicsbody to use
     CGPathMoveToPoint(path, NULL, 3 - offsetX, 14 - offsetY);
     CGPathAddLineToPoint(path, NULL, 1 - offsetX, 9 - offsetY);
     CGPathAddLineToPoint(path, NULL, 1 - offsetX, 0 - offsetY);
     CGPathAddLineToPoint(path, NULL, 4 - offsetX, 0 - offsetY);
     CGPathAddLineToPoint(path, NULL, 4 - offsetX, 10 - offsetY);
-
     
     CGPathCloseSubpath(path);
     
+    //  Add the physics body no linearDamping so they just go at the same speed
     missile.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
-    missile.physicsBody.usesPreciseCollisionDetection = YES;
     missile.physicsBody.linearDamping = 0.0;
     
     
-#if SHOW_SHIP_PHYSICS_OVERLAY
+#if SHOW_PHYSICS_OVERLAY
     SKShapeNode *shipOverlayShape = [[SKShapeNode alloc] init];
     shipOverlayShape.path = path;
     shipOverlayShape.strokeColor = [SKColor clearColor];
@@ -187,13 +196,16 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     [missile addChild:shipOverlayShape];
 #endif
     
+    //  Release the path so we don't leak
     CGPathRelease(path);
     return missile;
 }
 
+#pragma mark - Commands
 //  Hyperspace removes the ship then makes it appear at a random place
 - (void)hyperspace {
     
+    //  If hyperspace is OK move to another z plane, move randomly, then re-appear, and move back.
     if (self.hyperspaceOK) {
         self.ship.zPosition = -1;
         SKAction *fadeOut = [SKAction fadeOutWithDuration:0.25];
@@ -208,7 +220,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
 }
 
-
+//  Make the hyperspace bar grow over 10 seconds then enable hyperspace
 - (void)updateHyperspaceTimer {
     self.hyperspaceBar.color = [SKColor redColor];
     SKAction *hyperspaceBarGrow = [SKAction resizeToWidth:100.0 duration:10.0];
@@ -243,6 +255,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 }
 
 //  Do we need to loop a sprite to the other side of the scene?
+//  TODO: Make this apply to all sprites on screen other than missiles
 - (void)updateSpritePositions {
     //  Get the current possition
     CGPoint shipPosition = CGPointMake(self.ship.position.x, self.ship.position.y);
@@ -320,7 +333,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
         [self.ship attemptMissileLaunch:currentTime];
     }
     
- 
+    
 }
 
 - (void)keyDown:(NSEvent *)theEvent
@@ -375,10 +388,10 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
                     actions[kPlayerAction] = YES;
                     break;
                 case 'r':
-//                {
-//                    APLSpaceScene *reset = [[APLSpaceScene alloc] initWithSize: self.frame.size];
-//                    [self.view presentScene:reset transition:[SKTransition flipVerticalWithDuration:0.35]];
-//                }
+                    //                {
+                    //                    APLSpaceScene *reset = [[APLSpaceScene alloc] initWithSize: self.frame.size];
+                    //                    [self.view presentScene:reset transition:[SKTransition flipVerticalWithDuration:0.35]];
+                    //                }
                     break;
             }
         }

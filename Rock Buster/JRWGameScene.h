@@ -8,7 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-#define SHOW_SHIP_PHYSICS_OVERLAY 0
+//  Debug method to show the physicsbodys as overlays
+#define SHOW_PHYSICS_OVERLAY 1
 
 // These constants are used to map keyboard events into player events.
 typedef enum {
