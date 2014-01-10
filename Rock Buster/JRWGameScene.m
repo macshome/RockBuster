@@ -10,14 +10,6 @@
 #import "JRWShipSprite.h"
 #import "JRWRockSprite.h"
 
-//  Some random number functions
-static inline CGFloat skRandf() {
-    return arc4random() / (CGFloat) RAND_MAX;
-}
-
-static inline CGFloat skRand(CGFloat low, CGFloat high) {
-    return skRandf() * (high - low) + low;
-}
 
 @interface JRWGameScene ()
 
@@ -155,7 +147,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
         
             JRWRockSprite *rock = [JRWRockSprite createRandomRock];
             
-            rock.position = CGPointMake(skRand(0, self.size.width), skRand(0, self.size.height));
+            rock.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
             rock.name = [NSString stringWithFormat:@"rock_%ld", (long)self.level];
         
             rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rock.size];
@@ -219,7 +211,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
         self.ship.zPosition = -1;
         self.ship.alpha = 0.0;
         
-        self.ship.position = CGPointMake(skRand(0, self.size.width), skRand(0, self.size.height));
+        self.ship.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
         
         SKAction *fadeIn = [SKAction fadeInWithDuration:0.25];
         [self.ship runAction:fadeIn completion:^{
