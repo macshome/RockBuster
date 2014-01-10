@@ -26,12 +26,12 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 
 @property NSMutableArray *rockArray;
 
-@property NSNumber *level;
-@property NSNumber *score;
+@property NSInteger level;
+@property NSInteger score;
 @property BOOL contentCreated;
 @property BOOL hyperspaceOK;
 
-@property int hyperspaceCount;
+@property NSInteger hyperspaceCount;
 
 @end
 
@@ -60,13 +60,15 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     self.backgroundColor = [SKColor blackColor];
     
     //  Set to level 1 and score to 0
-    self.level = @1;
-    self.score = @0;
+    self.level = 1;
+    self.score = 0;
     self.hyperspaceOK = NO;
+    self.rockArray = [NSMutableArray array];
     
     //  Add the sprites
     [self addShipShouldUseTransition:NO];
     [self addHUD];
+    [self addRock];
     [self updateHyperspaceTimer];
     
     //  Set gravity
@@ -86,14 +88,14 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     //  Level label
     SKLabelNode *levelLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
     levelLabel.name = @"level";
-    levelLabel.text = [NSString stringWithFormat:@"Level %@", self.level];
+    levelLabel.text = [NSString stringWithFormat:@"Level %ld", (long)self.level];
     levelLabel.fontSize = 24;
     levelLabel.position = CGPointMake(CGRectGetMinX(self.frame) + 50, CGRectGetMaxY(self.frame) -30);
     
     //  Score label
     SKLabelNode *scoreLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
     scoreLabel.name = @"score";
-    scoreLabel.text = [NSString stringWithFormat:@"Score: %@", self.score];
+    scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.score];
     scoreLabel.fontSize = 24;
     scoreLabel.position = CGPointMake(CGRectGetMaxX(self.frame) - 50, CGRectGetMaxY(self.frame) -30);
     
@@ -147,19 +149,26 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 
 //  Add a rock
 - (void)addRock {
-    //  How many rocks are there? Make that many asteroids
-    for (int i = 0; i <= (int)self.level; i++) {
-        JRWRockSprite *rock = [JRWRockSprite createRandomRock];
-        rock.position = CGPointMake(skRand(0, self.size.width), skRand(0, self.size.height));
-        rock.name = [NSString stringWithFormat:@"rock_%i", i];
-        rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rock.size];
-        rock.physicsBody.usesPreciseCollisionDetection = YES;
-        rock.physicsBody.mass = 3;
-        [rock.physicsBody applyTorque:10.0];
-        [self.rockArray addObject:rock];
-        [self addChild:rock];
-    }
     
+    //  How many rocks are there? Make that many asteroids
+    while ([self.rockArray count] < self.level) {
+        
+            JRWRockSprite *rock = [JRWRockSprite createRandomRock];
+            
+            rock.position = CGPointMake(skRand(0, self.size.width), skRand(0, self.size.height));
+            rock.name = [NSString stringWithFormat:@"rock_%ld", (long)self.level];
+        
+            rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rock.size];
+            rock.physicsBody.usesPreciseCollisionDetection = YES;
+            rock.physicsBody.mass = 3;
+            [rock.physicsBody applyTorque:10.0];
+            
+            [self.rockArray addObject:rock];
+            NSLog(@"Level is %ld with %lu rocks in array", (long)self.level, [self.rockArray count]);
+            [self addChild:rock];
+
+    
+           }
 }
 
 //  Add a missile
