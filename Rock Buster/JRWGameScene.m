@@ -285,16 +285,16 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 - (void)shipSpeedLimit {
     
     //  Check the x velocity
-    if (self.ship.physicsBody.velocity.dx > 500) {
+    if (self.ship.physicsBody.velocity.dx >= 500) {
         self.ship.physicsBody.velocity = CGVectorMake(500, self.ship.physicsBody.velocity.dy);
-    } else if (self.ship.physicsBody.velocity.dx < -500) {
+    } else if (self.ship.physicsBody.velocity.dx <= -500) {
         self.ship.physicsBody.velocity = CGVectorMake(-500, self.ship.physicsBody.velocity.dy);
     }
     
     //  Check the y velocity
-    if (self.ship.physicsBody.velocity.dy > 500) {
+    if (self.ship.physicsBody.velocity.dy >= 500) {
         self.ship.physicsBody.velocity = CGVectorMake(self.ship.physicsBody.velocity.dx, 500);
-    } else if (self.ship.physicsBody.velocity.dy < -500) {
+    } else if (self.ship.physicsBody.velocity.dy <= -500) {
         self.ship.physicsBody.velocity = CGVectorMake(self.ship.physicsBody.velocity.dx, -500);
     }
 }
