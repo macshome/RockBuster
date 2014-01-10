@@ -51,6 +51,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     //  Give the ship a mass of 1 and some linearDamping that makes us slow down after letting off the gas.
     ship.physicsBody.mass = 1;
     ship.physicsBody.linearDamping = .7;
+    ship.physicsBody.angularDamping = 1.0;
     
     ship.name = @"Ship";
     

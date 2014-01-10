@@ -52,7 +52,7 @@
     self.backgroundColor = [SKColor blackColor];
     
     //  Set to level 1 and score to 0
-    self.level = 1;
+    self.level = 5;
     self.score = 0;
     self.hyperspaceOK = NO;
     self.rockArray = [NSMutableArray array];
@@ -148,17 +148,18 @@
             JRWRockSprite *rock = [JRWRockSprite createRandomRock];
             
             rock.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
-            rock.name = [NSString stringWithFormat:@"rock_%ld", (long)self.level];
+            rock.name = [NSString stringWithFormat:@"rock_%ld", self.level];
         
             rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rock.size];
             rock.physicsBody.usesPreciseCollisionDetection = YES;
             rock.physicsBody.mass = 3;
-            [rock.physicsBody applyTorque:10.0];
+        rock.physicsBody.angularDamping = 0.0;
             
             [self.rockArray addObject:rock];
-            NSLog(@"Level is %ld with %lu rocks in array", (long)self.level, [self.rockArray count]);
+            NSLog(@"Level is %ld with %lu rocks in array", self.level, [self.rockArray count]);
             [self addChild:rock];
-
+        
+        [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(40)-30];
     
            }
 }
