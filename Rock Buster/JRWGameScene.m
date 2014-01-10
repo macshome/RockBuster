@@ -15,6 +15,7 @@
 
 @property JRWShipSprite *ship;
 @property SKSpriteNode *hyperspaceBar;
+@property SKNode *playObjects;
 
 @property NSMutableArray *rockArray;
 
@@ -51,15 +52,22 @@
     /* Setup your scene here */
     self.backgroundColor = [SKColor blackColor];
     
+    // Add the HUD node
+    [self addHUD];
+    
     //  Set to level 1 and score to 0
     self.level = 5;
     self.score = 0;
     self.hyperspaceOK = NO;
     self.rockArray = [NSMutableArray array];
     
+    //  Create a node to hold the play objects
+    self.playObjects = [[SKNode alloc] init];
+    self.playObjects.name = @"playObjects";
+    [self addChild:self.playObjects];
+    
     //  Add the sprites
     [self addShipShouldUseTransition:NO];
-    [self addHUD];
     [self addRock];
     [self updateHyperspaceTimer];
     
@@ -76,6 +84,7 @@
     
     //  Put the HUD above the play field so that things can move under it
     hud.zPosition = 1;
+    hud.name = @"HUD";
     
     //  Level label
     SKLabelNode *levelLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
@@ -125,7 +134,7 @@
         
         //  With no transsition just add the ship
         if (!useTransition) {
-            [self addChild:self.ship];
+            [self.playObjects addChild:self.ship];
         } else {
             //  Transition to drop in a new ship
             [self.ship setScale:3.0];
@@ -133,7 +142,7 @@
             SKAction *zoom = [SKAction  scaleTo:1.0 duration:1.0];
             SKAction *fadeIn = [SKAction fadeInWithDuration:1.0];
             SKAction *dropIn = [SKAction group:@[zoom, fadeIn]];
-            [self addChild:self.ship];
+            [self.playObjects addChild:self.ship];
             [self.ship runAction:dropIn];
         }
     }
@@ -157,7 +166,7 @@
             
             [self.rockArray addObject:rock];
             NSLog(@"Level is %ld with %lu rocks in array", self.level, [self.rockArray count]);
-            [self addChild:rock];
+            [self.playObjects addChild:rock];
         
         [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(40)-30];
     
@@ -261,26 +270,32 @@
 //  Do we need to loop a sprite to the other side of the scene?
 //  TODO: Make this apply to all sprites on screen other than missiles
 - (void)updateSpritePositions {
-    //  Get the current possition
-    CGPoint shipPosition = CGPointMake(self.ship.position.x, self.ship.position.y);
     
-    //  If we've gone beyond the edge warp to the other side.
-    if (shipPosition.x > (CGRectGetMaxX(self.frame) + 10)) {
-        self.ship.position = CGPointMake((CGRectGetMinX(self.frame) - 5), shipPosition.y);
-    }
-    
-    if (shipPosition.x < (CGRectGetMinX(self.frame) - 10)) {
-        self.ship.position = CGPointMake((CGRectGetMaxX(self.frame) + 5), shipPosition.y);
-    }
-    
-    if (shipPosition.y > (CGRectGetMaxY(self.frame) + 10)) {
-        self.ship.position = CGPointMake(shipPosition.x, (CGRectGetMinY(self.frame) - 5));
-    }
-    
-    if (shipPosition.y < (CGRectGetMinY(self.frame) - 10)) {
-        self.ship.position = CGPointMake(shipPosition.x, (CGRectGetMaxY(self.frame) + 5));
-    }
-    
+    [self enumerateChildNodesWithName:@"/playObjects/*" usingBlock:^(SKNode *node, BOOL *stop) {
+        
+            //  Get the current possition
+            CGPoint nodePosition = CGPointMake(node.position.x, node.position.y);
+            
+            
+            //  If we've gone beyond the edge warp to the other side.
+            if (nodePosition.x > (CGRectGetMaxX(self.frame) + 10)) {
+                node.position = CGPointMake((CGRectGetMinX(self.frame) - 5), nodePosition.y);
+            }
+            
+            if (nodePosition.x < (CGRectGetMinX(self.frame) - 10)) {
+                node.position = CGPointMake((CGRectGetMaxX(self.frame) + 5), nodePosition.y);
+            }
+            
+            if (nodePosition.y > (CGRectGetMaxY(self.frame) + 10)) {
+                node.position = CGPointMake(nodePosition.x, (CGRectGetMinY(self.frame) - 5));
+            }
+            
+            if (nodePosition.y < (CGRectGetMinY(self.frame) - 10)) {
+                node.position = CGPointMake(nodePosition.x, (CGRectGetMaxY(self.frame) + 5));
+            }
+            
+        }];
+   
 }
 
 //  Speed limiter
