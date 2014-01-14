@@ -268,7 +268,6 @@
 }
 
 //  Do we need to loop a sprite to the other side of the scene?
-//  TODO: Make this apply to all sprites on screen other than missiles
 - (void)updateSpritePositions {
     
     [self enumerateChildNodesWithName:@"/playObjects/*" usingBlock:^(SKNode *node, BOOL *stop) {
@@ -278,20 +277,20 @@
             
             
             //  If we've gone beyond the edge warp to the other side.
-            if (nodePosition.x > (CGRectGetMaxX(self.frame) + 10)) {
-                node.position = CGPointMake((CGRectGetMinX(self.frame) - 5), nodePosition.y);
+            if (nodePosition.x > (CGRectGetMaxX(self.frame) + 20)) {
+                node.position = CGPointMake((CGRectGetMinX(self.frame) - 10), nodePosition.y);
             }
             
-            if (nodePosition.x < (CGRectGetMinX(self.frame) - 10)) {
-                node.position = CGPointMake((CGRectGetMaxX(self.frame) + 5), nodePosition.y);
+            if (nodePosition.x < (CGRectGetMinX(self.frame) - 20)) {
+                node.position = CGPointMake((CGRectGetMaxX(self.frame) + 10), nodePosition.y);
             }
             
-            if (nodePosition.y > (CGRectGetMaxY(self.frame) + 10)) {
-                node.position = CGPointMake(nodePosition.x, (CGRectGetMinY(self.frame) - 5));
+            if (nodePosition.y > (CGRectGetMaxY(self.frame) + 20)) {
+                node.position = CGPointMake(nodePosition.x, (CGRectGetMinY(self.frame) - 10));
             }
             
-            if (nodePosition.y < (CGRectGetMinY(self.frame) - 10)) {
-                node.position = CGPointMake(nodePosition.x, (CGRectGetMaxY(self.frame) + 5));
+            if (nodePosition.y < (CGRectGetMinY(self.frame) - 20)) {
+                node.position = CGPointMake(nodePosition.x, (CGRectGetMaxY(self.frame) + 10));
             }
             
         }];
