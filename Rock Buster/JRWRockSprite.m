@@ -7,6 +7,7 @@
 //
 
 #import "JRWRockSprite.h"
+#import "JRWGameScene.h"
 
 
 
@@ -20,6 +21,14 @@ static inline int randRock(int high) {
 + (instancetype)createRandomRock {
     //  We have 5 rock types, pick a random one.
     JRWRockSprite *rock = [JRWRockSprite spriteNodeWithTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"asteroid_%i", randRock(4)]]];
+    
+    rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rock.size];
+    rock.physicsBody.categoryBitMask = RBCasteroidCategory;
+    rock.physicsBody.collisionBitMask = (RBCasteroidCategory | RBCmissileCategory | RBCshipCategory);
+    rock.physicsBody.contactTestBitMask = (RBCasteroidCategory | RBCmissileCategory | RBCshipCategory);
+    rock.physicsBody.usesPreciseCollisionDetection = YES;
+    rock.physicsBody.mass = 3;
+    rock.physicsBody.angularDamping = 0.0;
   
     return rock;
 }

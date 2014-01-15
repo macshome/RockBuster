@@ -53,6 +53,11 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     ship.physicsBody.linearDamping = .7;
     ship.physicsBody.angularDamping = 1.0;
     
+    //  Collsion mapping
+    ship.physicsBody.categoryBitMask = RBCshipCategory;
+    ship.physicsBody.collisionBitMask = 0;
+    ship.physicsBody.contactTestBitMask = RBCasteroidCategory;
+    
     ship.name = @"Ship";
     
 #if SHOW_PHYSICS_OVERLAY

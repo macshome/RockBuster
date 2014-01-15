@@ -158,11 +158,6 @@
             
             rock.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
             rock.name = [NSString stringWithFormat:@"rock_%ld", self.level];
-        
-            rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rock.size];
-            rock.physicsBody.usesPreciseCollisionDetection = YES;
-            rock.physicsBody.mass = 3;
-        rock.physicsBody.angularDamping = 0.0;
             
             [self.rockArray addObject:rock];
             NSLog(@"Level is %ld with %lu rocks in array", self.level, [self.rockArray count]);
@@ -197,6 +192,11 @@
     //  Add the physics body no linearDamping so they just go at the same speed
     missile.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
     missile.physicsBody.linearDamping = 0.0;
+    
+    //  Collision maps
+    missile.physicsBody.categoryBitMask = RBCmissileCategory;
+    missile.physicsBody.collisionBitMask = 0;
+    missile.physicsBody.contactTestBitMask = 0;
     
     
 #if SHOW_PHYSICS_OVERLAY
