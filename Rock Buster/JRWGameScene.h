@@ -22,15 +22,26 @@ typedef enum {
 } PlayerActions;
 
 // These constans are used to define the physics interactions between physics bodies in the scene.
-typedef NS_OPTIONS(NSUInteger, RockBusterCollionsMask) {
-    RBCmissileCategory,
-    RBCshipCategory,
-    RBCasteroidCategory
-};
+//typedef NS_OPTIONS(NSUInteger, RockBusterCollionsMask) {
+//    RBCmissileCategory =  0x1 << 0,
+//    RBCasteroidCategory =  0x1 << 1,
+//    RBCshipCategory =  0x1 << 2
+//    
+//};
 
-//static const uint32_t missileCategory  =  0x1 << 0;
-//static const uint32_t shipCategory     =  0x1 << 1;
-//static const uint32_t asteroidCategory =  0x1 << 2;
+
+
+static  NSString const *bigRock = @"asteroid_0";
+static const NSString *largeRock = @"asteroid_1";
+static const NSString *mediumRock = @"asteroid_2";
+static const NSString *smallRock = @"asteroid_3";
+static const NSString *tinyRock = @"asteroid_4";
+
+static const uint32_t RBCmissileCategory  =  0x1 << 0;
+static const uint32_t RBCasteroidCategory  =  0x1 << 1;
+static const uint32_t RBCshipCategory  =  0x1 << 2;
+
+
 
 @interface JRWGameScene : SKScene <SKPhysicsContactDelegate>
 {

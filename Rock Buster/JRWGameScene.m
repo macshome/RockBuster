@@ -157,7 +157,6 @@
             JRWRockSprite *rock = [JRWRockSprite createRandomRock];
             
             rock.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
-            rock.name = [NSString stringWithFormat:@"rock_%ld", self.level];
             
             [self.rockArray addObject:rock];
             NSLog(@"Level is %ld with %lu rocks in array", self.level, [self.rockArray count]);
@@ -294,6 +293,13 @@
             }
             
         }];
+    
+    //  Remove any missles that have gone off screen
+    [self enumerateChildNodesWithName:@"missile" usingBlock:^(SKNode *node, BOOL *stop) {
+        if (node.position.y > (CGRectGetMaxY(self.frame)) || node.position.y < (CGRectGetMinY(self.frame)) ||
+            node.position.x > (CGRectGetMaxX(self.frame)) || node.position.x < (CGRectGetMinX(self.frame)))
+            [node removeFromParent];
+    }];
    
 }
 
@@ -313,6 +319,78 @@
     } else if (self.ship.physicsBody.velocity.dy <= -500) {
         self.ship.physicsBody.velocity = CGVectorMake(self.ship.physicsBody.velocity.dx, -500);
     }
+}
+
+//  We hit a rock with a missile
+- (void)hitRock:(SKNode *)rock withMissile:(SKNode *)missile {
+    [missile removeFromParent];
+    [self breakRock:rock];
+    
+}
+
+//  Which rock is it? Break it like we should
+- (void)breakRock:(SKNode *)rock {
+    if ([rock.name isEqualToString:(NSString *)bigRock]) {
+        NSLog(@"Big rock");
+        self.score = self.score + 100;
+    }
+    
+    if ([rock.name isEqualToString:(NSString *)largeRock]) {
+        NSLog(@"Large rock");
+        self.score = self.score + 150;
+    }
+    
+    if ([rock.name isEqualToString:(NSString *)mediumRock]) {
+        NSLog(@"medium rock");
+        self.score = self.score + 200;
+    }
+    
+    if ([rock.name isEqualToString:(NSString *)smallRock]) {
+        NSLog(@"small rock");
+        self.score = self.score + 300;
+    }
+    
+    if ([rock.name isEqualToString:(NSString *)tinyRock]) {
+        NSLog(@"tiny rock");
+        self.score = self.score + 500;
+    }
+    
+    
+}
+
+
+//  Contact callback (Adapted from Apple sample code)
+- (void)didBeginContact:(SKPhysicsContact *)contact {
+    
+    //  SKPhysicsBody objects to hold the passed in objects
+    SKPhysicsBody *firstBody;
+    SKPhysicsBody *secondBody;
+    
+    // The contacts can appear in either order, and so normally you'd need to check
+    // each against the other. In this example, the category types are well ordered, so
+    // the code swaps the two bodies if they are out of order. This allows the code
+    // to only test collisions once.
+    
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
+    {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    }
+    else
+    {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    
+    // Missiles only hit rocks
+    
+    if ((firstBody.categoryBitMask & RBCmissileCategory) != 0)
+    {
+        [self hitRock:secondBody.node withMissile:firstBody.node];
+    }
+
+
+    
 }
 
 //  Ship controls
