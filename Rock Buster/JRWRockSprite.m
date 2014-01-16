@@ -20,7 +20,7 @@ static inline int randRock(int high) {
 
 + (instancetype)createRandomRock {
     //  We have 5 rock types, pick a random one.
-    NSString *textureName = [NSString stringWithFormat:@"asteroid_%i", randRock(4)];
+    NSString *textureName = [NSString stringWithFormat:@"asteroid_%i", randRock(5)];
     JRWRockSprite *rock = [JRWRockSprite spriteNodeWithTexture:[SKTexture textureWithImageNamed:textureName]];
     
     rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rock.size];
@@ -36,14 +36,7 @@ static inline int randRock(int high) {
     return rock;
 }
 
-- (id)breakRock {
-   
-    //  Which rock is it that we have?
-    //  If it's big convert to two mediums
-    //  if it's medium make 4 tiny
-    //  if it's tiny it's dead
-    return nil;
-}
+
 
 
 @end

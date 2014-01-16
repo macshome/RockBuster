@@ -12,6 +12,6 @@
 
 + (instancetype)createRandomRock;
 
-- (id)breakRock;
+
 
 @end
