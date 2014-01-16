@@ -154,17 +154,17 @@
     //  How many rocks are there? Make that many asteroids
     while ([self.rockArray count] < self.level) {
         
-            JRWRockSprite *rock = [JRWRockSprite createRandomRock];
-            
-            rock.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
-            
-            [self.rockArray addObject:rock];
-            NSLog(@"Level is %ld with %lu rocks in array", self.level, [self.rockArray count]);
-            [self.playObjects addChild:rock];
+        JRWRockSprite *rock = [JRWRockSprite createRandomRock];
+        
+        rock.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
+        
+        [self.rockArray addObject:rock];
+        NSLog(@"Level is %ld with %lu rocks in array", self.level, [self.rockArray count]);
+        [self.playObjects addChild:rock];
         
         [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(40)-30];
-    
-           }
+        
+    }
 }
 
 //  Add a missile
@@ -271,28 +271,28 @@
     
     [self enumerateChildNodesWithName:@"/playObjects/*" usingBlock:^(SKNode *node, BOOL *stop) {
         
-            //  Get the current possition
-            CGPoint nodePosition = CGPointMake(node.position.x, node.position.y);
-            
-            
-            //  If we've gone beyond the edge warp to the other side.
-            if (nodePosition.x > (CGRectGetMaxX(self.frame) + 20)) {
-                node.position = CGPointMake((CGRectGetMinX(self.frame) - 10), nodePosition.y);
-            }
-            
-            if (nodePosition.x < (CGRectGetMinX(self.frame) - 20)) {
-                node.position = CGPointMake((CGRectGetMaxX(self.frame) + 10), nodePosition.y);
-            }
-            
-            if (nodePosition.y > (CGRectGetMaxY(self.frame) + 20)) {
-                node.position = CGPointMake(nodePosition.x, (CGRectGetMinY(self.frame) - 10));
-            }
-            
-            if (nodePosition.y < (CGRectGetMinY(self.frame) - 20)) {
-                node.position = CGPointMake(nodePosition.x, (CGRectGetMaxY(self.frame) + 10));
-            }
-            
-        }];
+        //  Get the current possition
+        CGPoint nodePosition = CGPointMake(node.position.x, node.position.y);
+        
+        
+        //  If we've gone beyond the edge warp to the other side.
+        if (nodePosition.x > (CGRectGetMaxX(self.frame) + 20)) {
+            node.position = CGPointMake((CGRectGetMinX(self.frame) - 10), nodePosition.y);
+        }
+        
+        if (nodePosition.x < (CGRectGetMinX(self.frame) - 20)) {
+            node.position = CGPointMake((CGRectGetMaxX(self.frame) + 10), nodePosition.y);
+        }
+        
+        if (nodePosition.y > (CGRectGetMaxY(self.frame) + 20)) {
+            node.position = CGPointMake(nodePosition.x, (CGRectGetMinY(self.frame) - 10));
+        }
+        
+        if (nodePosition.y < (CGRectGetMinY(self.frame) - 20)) {
+            node.position = CGPointMake(nodePosition.x, (CGRectGetMaxY(self.frame) + 10));
+        }
+        
+    }];
     
     //  Remove any missles that have gone off screen
     [self enumerateChildNodesWithName:@"missile" usingBlock:^(SKNode *node, BOOL *stop) {
@@ -300,7 +300,7 @@
             node.position.x > (CGRectGetMaxX(self.frame)) || node.position.x < (CGRectGetMinX(self.frame)))
             [node removeFromParent];
     }];
-   
+    
 }
 
 //  Speed limiter
@@ -330,32 +330,34 @@
 
 //  Which rock is it? Break it like we should
 - (void)breakRock:(SKNode *)rock {
-    if ([rock.name isEqualToString:(NSString *)bigRock]) {
-        NSLog(@"Big rock");
-        self.score = self.score + 100;
+    
+    switch ([rock.name integerValue]) {
+        case RBbigRock:
+            NSLog(@"Big rock");
+            self.score = self.score + 100;
+            [rock removeFromParent];
+            break;
+        case RBlargeRock:
+            NSLog(@"Large rock");
+            self.score = self.score + 150;
+            [rock removeFromParent];
+            break;
+        case RBmediumRock:
+            NSLog(@"Large rock");
+            self.score = self.score + 200;
+            [rock removeFromParent];
+            break;
+        case RBsmallRock:
+            NSLog(@"Large rock");
+            self.score = self.score + 300;
+            [rock removeFromParent];
+            break;
+        case RBtinyRock:
+            NSLog(@"Large rock");
+            self.score = self.score + 600;
+            [rock removeFromParent];
+            break;
     }
-    
-    if ([rock.name isEqualToString:(NSString *)largeRock]) {
-        NSLog(@"Large rock");
-        self.score = self.score + 150;
-    }
-    
-    if ([rock.name isEqualToString:(NSString *)mediumRock]) {
-        NSLog(@"medium rock");
-        self.score = self.score + 200;
-    }
-    
-    if ([rock.name isEqualToString:(NSString *)smallRock]) {
-        NSLog(@"small rock");
-        self.score = self.score + 300;
-    }
-    
-    if ([rock.name isEqualToString:(NSString *)tinyRock]) {
-        NSLog(@"tiny rock");
-        self.score = self.score + 500;
-    }
-    
-    
 }
 
 
@@ -388,8 +390,8 @@
     {
         [self hitRock:secondBody.node withMissile:firstBody.node];
     }
-
-
+    
+    
     
 }
 

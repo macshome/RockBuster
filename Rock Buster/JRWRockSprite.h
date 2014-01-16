@@ -8,10 +8,18 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+//  Typedef for our different rock types
+typedef NS_ENUM(NSInteger, RBrockType) {
+    RBbigRock,
+    RBlargeRock,
+    RBmediumRock,
+    RBsmallRock,
+    RBtinyRock
+};
+
 @interface JRWRockSprite : SKSpriteNode
 
 + (instancetype)createRandomRock;
-
-
++ (instancetype)createRockWithSize:(RBrockType)rockType;
 
 @end

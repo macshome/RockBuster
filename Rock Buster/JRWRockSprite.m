@@ -10,7 +10,7 @@
 #import "JRWGameScene.h"
 
 
-
+//  Just trying this to see if performance improves
 static inline int randRock(int high) {
     return arc4random() % high;
 }
@@ -18,10 +18,16 @@ static inline int randRock(int high) {
 
 @implementation JRWRockSprite
 
+
+
 + (instancetype)createRandomRock {
     //  We have 5 rock types, pick a random one.
-    NSString *textureName = [NSString stringWithFormat:@"asteroid_%i", randRock(5)];
-    JRWRockSprite *rock = [JRWRockSprite spriteNodeWithTexture:[SKTexture textureWithImageNamed:textureName]];
+    JRWRockSprite *rock = [self createRockWithSize:randRock(5)];
+    return rock;
+}
+
++ (instancetype)createRockWithSize:(RBrockType)rockType {
+    JRWRockSprite *rock = [JRWRockSprite spriteNodeWithTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"asteroid_%li", rockType]]];
     
     rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rock.size];
     rock.physicsBody.categoryBitMask = RBCasteroidCategory;
@@ -31,12 +37,10 @@ static inline int randRock(int high) {
     rock.physicsBody.mass = 3;
     rock.physicsBody.angularDamping = 0.0;
     
-    rock.name = textureName;
-  
+    rock.name = [@(rockType) stringValue];
+    
     return rock;
 }
-
-
 
 
 @end
