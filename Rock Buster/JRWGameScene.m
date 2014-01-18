@@ -165,6 +165,7 @@
         [self.playObjects addChild:rock];
         
         [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(40)-30];
+        [rock.physicsBody applyImpulse:CGVectorMake(arc4random_uniform(30), arc4random_uniform(30))];
         
     }
 }
