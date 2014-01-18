@@ -8,7 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-//  Debug method to show the physicsbodys as overlays. Set to 1 to enable.
+//  Debug method to show the physicsbodies as overlays. Set to 1 to enable.
 #define SHOW_PHYSICS_OVERLAY 0
 
 // These constants are used to map keyboard events into player events.

@@ -68,7 +68,7 @@
     
     //  Add the sprites
     [self addShipShouldUseTransition:NO];
-    [self addRock];
+    [self addRocks];
     [self updateHyperspaceTimer];
     
     //  Set gravity
@@ -91,14 +91,16 @@
     levelLabel.name = @"level";
     levelLabel.text = [NSString stringWithFormat:@"Level %ld", (long)self.level];
     levelLabel.fontSize = 24;
-    levelLabel.position = CGPointMake(CGRectGetMinX(self.frame) + 50, CGRectGetMaxY(self.frame) -30);
+    levelLabel.position = CGPointMake(CGRectGetMaxX(self.frame) - 30, CGRectGetMaxY(self.frame) -30);
+    levelLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
     
     //  Score label
     SKLabelNode *scoreLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
     scoreLabel.name = @"score";
     scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.score];
     scoreLabel.fontSize = 24;
-    scoreLabel.position = CGPointMake(CGRectGetMaxX(self.frame) - 50, CGRectGetMaxY(self.frame) -30);
+    scoreLabel.position = CGPointMake(CGRectGetMinX(self.frame) + 30, CGRectGetMaxY(self.frame) -30);
+    scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     
     //  Hyperspace bar
     self.hyperspaceBar = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(0, 21)];
@@ -149,7 +151,7 @@
 }
 
 //  Add a rock
-- (void)addRock {
+- (void)addRocks {
     
     //  How many rocks are there? Make that many asteroids
     while ([self.rockArray count] < self.level) {
@@ -335,30 +337,53 @@
         case RBbigRock:
             NSLog(@"Big rock");
             self.score = self.score + 100;
+            for (int i = 0; i < 2; i++) {
+                JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBlargeRock];
+                newRock.position = rock.position;
+                [self.playObjects addChild:newRock];
+               
+                [newRock.physicsBody applyTorque:(CGFloat)arc4random_uniform(40)-30];
+            }
             [rock removeFromParent];
             break;
+            
         case RBlargeRock:
             NSLog(@"Large rock");
             self.score = self.score + 150;
+            for (int i = 0; i < 2; i++) {
+                JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBmediumRock];
+                newRock.position = rock.position;
+                [self.playObjects addChild:newRock];
+                
+                [newRock.physicsBody applyTorque:(CGFloat)arc4random_uniform(40)-30];
+            }
             [rock removeFromParent];
             break;
+            
         case RBmediumRock:
-            NSLog(@"Large rock");
+            NSLog(@"Medium rock");
             self.score = self.score + 200;
             [rock removeFromParent];
             break;
+            
         case RBsmallRock:
-            NSLog(@"Large rock");
+            NSLog(@"small rock");
             self.score = self.score + 300;
             [rock removeFromParent];
             break;
+            
         case RBtinyRock:
-            NSLog(@"Large rock");
+            NSLog(@"tiny rock");
             self.score = self.score + 600;
             [rock removeFromParent];
             break;
     }
+    
+
+    [(SKLabelNode *)[self childNodeWithName:@"HUD/score"] setText: [NSString stringWithFormat:@"Score: %ld", (long)self.score]];
+    
 }
+
 
 
 //  Contact callback (Adapted from Apple sample code)
