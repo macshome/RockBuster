@@ -17,8 +17,6 @@
 @property SKSpriteNode *hyperspaceBar;
 @property SKNode *playObjects;
 
-@property NSMutableArray *rockArray;
-
 @property NSInteger level;
 @property NSInteger score;
 @property BOOL contentCreated;
@@ -52,14 +50,13 @@
     /* Setup your scene here */
     self.backgroundColor = [SKColor blackColor];
     
-    // Add the HUD node
-    [self addHUD];
-    
     //  Set to level 1 and score to 0
-    self.level = 5;
+    self.level = 10;
     self.score = 0;
     self.hyperspaceOK = NO;
-    self.rockArray = [NSMutableArray array];
+    
+    // Add the HUD node
+    [self addHUD];
     
     //  Create a node to hold the play objects
     self.playObjects = [[SKNode alloc] init];
@@ -156,17 +153,18 @@
 - (void)addRocks {
     
     //  How many rocks are there? Make that many asteroids
-    while ([self.rockArray count] < self.level) {
+    int rockCount = 0;
+    while ( rockCount < self.level) {
         
         JRWRockSprite *rock = [JRWRockSprite createRandomRock];
         
         rock.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
         
-        [self.rockArray addObject:rock];
-        NSLog(@"Level is %ld with %lu rocks in array", self.level, [self.rockArray count]);
+        NSLog(@"Level is %ld with %d rocks in array", self.level, rockCount);
         [self.playObjects addChild:rock];
         
         [self rockPhysics:rock];
+        rockCount++;
         
     }
 }
@@ -215,7 +213,7 @@
     return missile;
 }
 
-#pragma mark - Commands
+#pragma mark - Hyperspace System
 //  Hyperspace removes the ship then makes it appear at a random place
 - (void)hyperspace {
     
