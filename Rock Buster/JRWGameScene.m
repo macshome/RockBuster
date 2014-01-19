@@ -460,7 +460,7 @@
      Use the stored key information to control the ship. (Grabbed this from Apple sample code.)
      */
     
-    if (actions[kPlayerForward])
+    if (actions[RBCPlayerForward])
     {
         [self.ship activateMainEngine];
     }
@@ -469,22 +469,22 @@
         [self.ship deactivateMainEngine];
     }
     
-    if (actions[kPlayerBack])
+    if (actions[RBCPlayerBack])
     {
         [self hyperspace];
     }
     
-    if (actions[kPlayerLeft])
+    if (actions[RBCPlayerLeft])
     {
         [self.ship rotateShipLeft];
     }
     
-    if (actions[kPlayerRight])
+    if (actions[RBCPlayerRight])
     {
         [self.ship rotateShipRight];
     }
     
-    if (actions[kPlayerAction])
+    if (actions[RBCPlayerAction])
     {
         [self.ship attemptMissileLaunch:currentTime];
     }
@@ -507,16 +507,16 @@
             keyChar = [theArrow characterAtIndex:0];
             switch (keyChar) {
                 case NSLeftArrowFunctionKey:
-                    actions[kPlayerLeft] = YES;
+                    actions[RBCPlayerLeft] = YES;
                     break;
                 case NSRightArrowFunctionKey:
-                    actions[kPlayerRight] = YES;
+                    actions[RBCPlayerRight] = YES;
                     break;
                 case NSUpArrowFunctionKey:
-                    actions[kPlayerForward] = YES;
+                    actions[RBCPlayerForward] = YES;
                     break;
                 case NSDownArrowFunctionKey:
-                    actions[kPlayerBack] = YES;
+                    actions[RBCPlayerBack] = YES;
                     break;
             }
         }
@@ -529,19 +529,19 @@
             unichar character = [characters characterAtIndex:s];
             switch (character) {
                 case 'w':
-                    actions[kPlayerForward] = YES;
+                    actions[RBCPlayerForward] = YES;
                     break;
                 case 'a':
-                    actions[kPlayerLeft] = YES;
+                    actions[RBCPlayerLeft] = YES;
                     break;
                 case 'd':
-                    actions[kPlayerRight] = YES;
+                    actions[RBCPlayerRight] = YES;
                     break;
                 case 's':
-                    actions[kPlayerBack] = YES;
+                    actions[RBCPlayerBack] = YES;
                     break;
                 case ' ':
-                    actions[kPlayerAction] = YES;
+                    actions[RBCPlayerAction] = YES;
                     break;
                 case 'r':
                     //                {
@@ -570,19 +570,19 @@
             keyChar = [theArrow characterAtIndex:0];
             switch (keyChar) {
                 case NSLeftArrowFunctionKey:
-                    actions[kPlayerLeft] = NO;
+                    actions[RBCPlayerLeft] = NO;
                     break;
                 case NSRightArrowFunctionKey:
-                    actions[kPlayerRight] = NO;
+                    actions[RBCPlayerRight] = NO;
                     break;
                 case NSUpArrowFunctionKey:
-                    actions[kPlayerForward] = NO;
+                    actions[RBCPlayerForward] = NO;
                     break;
                 case NSDownArrowFunctionKey:
-                    actions[kPlayerBack] = NO;
+                    actions[RBCPlayerBack] = NO;
                     break;
                 case ' ':
-                    actions[kPlayerAction] = YES;
+                    actions[RBCPlayerAction] = YES;
                     break;
             }
         }
@@ -593,19 +593,19 @@
             unichar character = [characters characterAtIndex:s];
             switch (character) {
                 case 'w':
-                    actions[kPlayerForward] = NO;
+                    actions[RBCPlayerForward] = NO;
                     break;
                 case 'a':
-                    actions[kPlayerLeft] = NO;
+                    actions[RBCPlayerLeft] = NO;
                     break;
                 case 'd':
-                    actions[kPlayerRight] = NO;
+                    actions[RBCPlayerRight] = NO;
                     break;
                 case 's':
-                    actions[kPlayerBack] = NO;
+                    actions[RBCPlayerBack] = NO;
                     break;
                 case ' ':
-                    actions[kPlayerAction] = NO;
+                    actions[RBCPlayerAction] = NO;
                     break;
             }
         }
