@@ -150,6 +150,8 @@
     }
 }
 
+
+
 //  Add a rock
 - (void)addRocks {
     
@@ -164,8 +166,7 @@
         NSLog(@"Level is %ld with %lu rocks in array", self.level, [self.rockArray count]);
         [self.playObjects addChild:rock];
         
-        [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(40)-30];
-        [rock.physicsBody applyImpulse:CGVectorMake(arc4random_uniform(30), arc4random_uniform(30))];
+        [self rockPhysics:rock];
         
     }
 }
@@ -324,6 +325,19 @@
     }
 }
 
+//  Rock movement/physics initilizer. Using this to work around a spritekit bug.
+- (void)rockPhysics:(JRWRockSprite *)rock {
+    rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rock.size];
+    rock.physicsBody.categoryBitMask = RBCasteroidCategory;
+    rock.physicsBody.collisionBitMask = (RBCasteroidCategory | RBCshipCategory);
+    rock.physicsBody.contactTestBitMask = (RBCasteroidCategory | RBCmissileCategory | RBCshipCategory);
+    rock.physicsBody.usesPreciseCollisionDetection = YES;
+    rock.physicsBody.mass = 3;
+    rock.physicsBody.angularDamping = 0.0;
+    [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(30)-30];
+    [rock.physicsBody applyImpulse:CGVectorMake(arc4random_uniform(30), arc4random_uniform(30))];
+}
+
 //  We hit a rock with a missile
 - (void)hitRock:(SKNode *)rock withMissile:(SKNode *)missile {
     [missile removeFromParent];
@@ -334,43 +348,62 @@
 //  Which rock is it? Break it like we should
 - (void)breakRock:(SKNode *)rock {
     
+    CGPoint position = rock.position;
     switch ([rock.name integerValue]) {
         case RBbigRock:
             NSLog(@"Big rock");
+            [rock removeFromParent];
             self.score = self.score + 100;
             for (int i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBlargeRock];
-                newRock.position = rock.position;
+                
+                newRock.position = position;
+                
+                
                 [self.playObjects addChild:newRock];
-               
-                [newRock.physicsBody applyTorque:(CGFloat)arc4random_uniform(40)-30];
+                [self rockPhysics:newRock];
             }
-            [rock removeFromParent];
+            
             break;
             
         case RBlargeRock:
             NSLog(@"Large rock");
+            [rock removeFromParent];
             self.score = self.score + 150;
             for (int i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBmediumRock];
-                newRock.position = rock.position;
+                newRock.position = position;
                 [self.playObjects addChild:newRock];
                 
-                [newRock.physicsBody applyTorque:(CGFloat)arc4random_uniform(40)-30];
+                [self rockPhysics:newRock];
             }
-            [rock removeFromParent];
+            
             break;
             
         case RBmediumRock:
             NSLog(@"Medium rock");
             self.score = self.score + 200;
             [rock removeFromParent];
+            for (int i = 0; i < 2; i++) {
+                JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBsmallRock];
+                newRock.position = position;
+                [self.playObjects addChild:newRock];
+                
+                [self rockPhysics:newRock];
+            }
             break;
             
         case RBsmallRock:
             NSLog(@"small rock");
             self.score = self.score + 300;
             [rock removeFromParent];
+            for (int i = 0; i < 2; i++) {
+                JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBtinyRock];
+                newRock.position = position;
+                [self.playObjects addChild:newRock];
+                
+                [self rockPhysics:newRock];
+            }
             break;
             
         case RBtinyRock:
@@ -380,10 +413,11 @@
             break;
     }
     
-
+    
     [(SKLabelNode *)[self childNodeWithName:@"HUD/score"] setText: [NSString stringWithFormat:@"Score: %ld", (long)self.score]];
     
 }
+
 
 
 
