@@ -29,9 +29,7 @@ typedef NS_OPTIONS(NSUInteger, RockBusterCollionsMask) {
     
 };
 
-
-
-
+//  Make sure that the scene is the physics contact delegate
 @interface JRWGameScene : SKScene <SKPhysicsContactDelegate>
 {
     BOOL     actions[RBCNumPlayerActions];

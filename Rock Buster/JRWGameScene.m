@@ -19,10 +19,10 @@
 
 @property NSInteger level;
 @property NSInteger score;
+@property NSInteger hyperspaceCount;
+
 @property BOOL contentCreated;
 @property BOOL hyperspaceOK;
-
-@property NSInteger hyperspaceCount;
 
 @end
 
@@ -75,6 +75,7 @@
     
 }
 
+//TODO: Move HUD and hyperspace bar nethods to their own class?
 //  Add the HUD
 - (void)addHUD {
     SKNode *hud = [[SKNode alloc] init];
@@ -160,7 +161,10 @@
         
         rock.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
         
+#if DEBUG
         NSLog(@"Level is %ld with %d rocks in array", self.level, rockCount);
+#endif
+        
         [self.playObjects addChild:rock];
         
         [self rockPhysics:rock];
@@ -194,7 +198,8 @@
     missile.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
     missile.physicsBody.linearDamping = 0.0;
     
-    //  Collision maps
+    //  Collision maps. There are a lot of missiles, so push the job of collision detection to
+    //  the objects that we want to hit.
     missile.physicsBody.categoryBitMask = RBCmissileCategory;
     missile.physicsBody.collisionBitMask = 0;
     missile.physicsBody.contactTestBitMask = 0;
@@ -214,7 +219,8 @@
 }
 
 #pragma mark - Hyperspace System
-//  Hyperspace removes the ship then makes it appear at a random place
+//  Hyperspace removes the ship then makes it appear at a random place.
+//  Since we aren't dustin' crops we might appear under a rock.
 - (void)hyperspace {
     
     //  If hyperspace is OK move to another z plane, move randomly, then re-appear, and move back.
@@ -224,6 +230,7 @@
         
         self.ship.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
         
+        //TODO: Figure out the timings here to have the fade happen
         SKAction *fadeIn = [SKAction fadeInWithDuration:0.25];
         [self.ship runAction:fadeIn completion:^{
             self.ship.zPosition = 0;
@@ -259,10 +266,10 @@
 }
 
 #pragma mark - Game updates and logic
+
+// This runs once every frame.
 - (void)update:(NSTimeInterval)currentTime
 {
-    // This runs once every frame.
-    
     [self updatePlayerShip:currentTime];
     [self updateSpritePositions];
     [self shipSpeedLimit];
@@ -349,15 +356,16 @@
     CGPoint position = rock.position;
     switch ([rock.name integerValue]) {
         case RBbigRock:
+#if DEBUG
             NSLog(@"Big rock");
+#endif
             [rock removeFromParent];
             self.score = self.score + 100;
             for (int i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBlargeRock];
                 
                 newRock.position = position;
-                
-                
+  
                 [self.playObjects addChild:newRock];
                 [self rockPhysics:newRock];
             }
@@ -365,21 +373,26 @@
             break;
             
         case RBlargeRock:
+#if DEBUG
             NSLog(@"Large rock");
+#endif
             [rock removeFromParent];
             self.score = self.score + 150;
             for (int i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBmediumRock];
-                newRock.position = position;
-                [self.playObjects addChild:newRock];
                 
+                newRock.position = position;
+                
+                [self.playObjects addChild:newRock];
                 [self rockPhysics:newRock];
             }
             
             break;
             
         case RBmediumRock:
+#if DEBUG
             NSLog(@"Medium rock");
+#endif
             self.score = self.score + 200;
             [rock removeFromParent];
             for (int i = 0; i < 2; i++) {
@@ -392,7 +405,9 @@
             break;
             
         case RBsmallRock:
+#if DEBUG
             NSLog(@"small rock");
+#endif
             self.score = self.score + 300;
             [rock removeFromParent];
             for (int i = 0; i < 2; i++) {
@@ -405,13 +420,15 @@
             break;
             
         case RBtinyRock:
+#if DEBUG
             NSLog(@"tiny rock");
+#endif
             self.score = self.score + 600;
             [rock removeFromParent];
             break;
     }
     
-    
+    //  Update the score label
     [(SKLabelNode *)[self childNodeWithName:@"HUD/score"] setText: [NSString stringWithFormat:@"Score: %ld", (long)self.score]];
     
 }
@@ -420,6 +437,7 @@
 
 
 //  Contact callback (Adapted from Apple sample code)
+//  TODO: Add ship damaage
 - (void)didBeginContact:(SKPhysicsContact *)contact {
     
     //  SKPhysicsBody objects to hold the passed in objects
@@ -448,8 +466,6 @@
     {
         [self hitRock:secondBody.node withMissile:firstBody.node];
     }
-    
-    
     
 }
 
@@ -543,12 +559,7 @@
                 case ' ':
                     actions[RBCPlayerAction] = YES;
                     break;
-                case 'r':
-                    //                {
-                    //                    APLSpaceScene *reset = [[APLSpaceScene alloc] initWithSize: self.frame.size];
-                    //                    [self.view presentScene:reset transition:[SKTransition flipVerticalWithDuration:0.35]];
-                    //                }
-                    break;
+
             }
         }
     }
