@@ -15,7 +15,7 @@
 // Used to control the ship, usually by applying physics forces to the ship.
 //  TODO: Put these in a plist
 static const CGFloat mainEngineThrust = 1000;
-static const CGFloat firingInterval = 0.1;
+static const CGFloat firingInterval = 0.3;
 static const CGFloat missileLaunchDistance = 40;
 static const CGFloat engineIdleAlpha = 0.05;
 static const CGFloat missileLaunchVelocity = 1000.0;
