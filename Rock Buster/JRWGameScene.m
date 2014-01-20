@@ -154,7 +154,7 @@
 - (void)addRocks {
     
     //  How many rocks are there? Make that many asteroids
-    int rockCount = 0;
+    NSInteger rockCount = 0;
     while ( rockCount < self.level) {
         
         JRWRockSprite *rock = [JRWRockSprite createRandomRock];
@@ -162,7 +162,7 @@
         rock.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
         
 #if DEBUG
-        NSLog(@"Level is %ld with %d rocks in array", self.level, rockCount);
+        NSLog(@"Level is %ld with %ld rocks in array", self.level, (long)rockCount);
 #endif
         
         [self.playObjects addChild:rock];
@@ -351,9 +351,14 @@
 }
 
 //  Which rock is it? Break it like we should
+//  TODO: File bug on the ordering of position and creating physicsbody
 - (void)breakRock:(SKNode *)rock {
     
+    //  Grab some physics info about the rock we are breaking
     CGPoint position = rock.position;
+    CGVector linearVelocity = rock.physicsBody.velocity;
+    CGFloat angularVelocity = rock.physicsBody.angularVelocity;
+    
     switch ([rock.name integerValue]) {
         case RBbigRock:
 #if DEBUG
@@ -361,13 +366,17 @@
 #endif
             [rock removeFromParent];
             self.score = self.score + 100;
-            for (int i = 0; i < 2; i++) {
+            for (NSInteger i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBlargeRock];
                 
                 newRock.position = position;
   
                 [self.playObjects addChild:newRock];
                 [self rockPhysics:newRock];
+                newRock.physicsBody.velocity =  CGVectorMake(linearVelocity.dx * 1.2, linearVelocity.dy * 1.2);
+                newRock.physicsBody.angularVelocity = (angularVelocity + 3.0);
+               
+                
             }
             
             break;
@@ -378,13 +387,15 @@
 #endif
             [rock removeFromParent];
             self.score = self.score + 150;
-            for (int i = 0; i < 2; i++) {
+            for (NSInteger i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBmediumRock];
                 
                 newRock.position = position;
                 
                 [self.playObjects addChild:newRock];
                 [self rockPhysics:newRock];
+                newRock.physicsBody.velocity =  CGVectorMake(linearVelocity.dx * 1.5, linearVelocity.dy * 1.5);
+                newRock.physicsBody.angularVelocity = (angularVelocity + 2.0);
             }
             
             break;
@@ -395,12 +406,15 @@
 #endif
             self.score = self.score + 200;
             [rock removeFromParent];
-            for (int i = 0; i < 2; i++) {
+            for (NSInteger i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBsmallRock];
-                newRock.position = position;
-                [self.playObjects addChild:newRock];
                 
+                newRock.position = position;
+                
+                [self.playObjects addChild:newRock];
                 [self rockPhysics:newRock];
+                newRock.physicsBody.velocity =  CGVectorMake(linearVelocity.dx * 1.8, linearVelocity.dy * 1.8);
+                newRock.physicsBody.angularVelocity = (angularVelocity + 1.0);
             }
             break;
             
@@ -410,12 +424,15 @@
 #endif
             self.score = self.score + 300;
             [rock removeFromParent];
-            for (int i = 0; i < 2; i++) {
+            for (NSInteger i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBtinyRock];
-                newRock.position = position;
-                [self.playObjects addChild:newRock];
                 
+                newRock.position = position;
+                
+                [self.playObjects addChild:newRock];
                 [self rockPhysics:newRock];
+                newRock.physicsBody.velocity =  CGVectorMake(linearVelocity.dx * 2.0, linearVelocity.dy * 2.0);
+                newRock.physicsBody.angularVelocity = (angularVelocity + .5);
             }
             break;
             
