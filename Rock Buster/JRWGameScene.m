@@ -424,16 +424,19 @@
 #endif
             self.score = self.score + 300;
             [rock removeFromParent];
-            for (NSInteger i = 0; i < 2; i++) {
-                JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBtinyRock];
-                
-                newRock.position = position;
-                
-                [self.playObjects addChild:newRock];
-                [self rockPhysics:newRock];
-                newRock.physicsBody.velocity =  CGVectorMake(linearVelocity.dx * 2.0, linearVelocity.dy * 2.0);
-                newRock.physicsBody.angularVelocity = (angularVelocity + .5);
+            if (arc4random_uniform(10) > 5) {
+                for (NSInteger i = 0; i < 2; i++) {
+                    JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBtinyRock];
+                    
+                    newRock.position = position;
+                    
+                    [self.playObjects addChild:newRock];
+                    [self rockPhysics:newRock];
+                    newRock.physicsBody.velocity =  CGVectorMake(linearVelocity.dx * 2.0, linearVelocity.dy * 2.0);
+                    newRock.physicsBody.angularVelocity = (angularVelocity + .5);
+                }
             }
+        
             break;
             
         case RBtinyRock:
