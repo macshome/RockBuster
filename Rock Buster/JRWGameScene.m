@@ -306,8 +306,10 @@
     //  Remove any missles that have gone off screen
     [self enumerateChildNodesWithName:@"missile" usingBlock:^(SKNode *node, BOOL *stop) {
         if (node.position.y > (CGRectGetMaxY(self.frame)) || node.position.y < (CGRectGetMinY(self.frame)) ||
-            node.position.x > (CGRectGetMaxX(self.frame)) || node.position.x < (CGRectGetMinX(self.frame)))
+            node.position.x > (CGRectGetMaxX(self.frame)) || node.position.x < (CGRectGetMinX(self.frame))) {
+            node.physicsBody = nil;
             [node removeFromParent];
+        }
     }];
     
 }
@@ -339,8 +341,8 @@
     rock.physicsBody.usesPreciseCollisionDetection = YES;
     rock.physicsBody.mass = 3;
     rock.physicsBody.angularDamping = 0.0;
-    [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(30)-30];
-    [rock.physicsBody applyImpulse:CGVectorMake(arc4random_uniform(30), arc4random_uniform(30))];
+    [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(10)-10];
+    [rock.physicsBody applyImpulse:CGVectorMake(arc4random_uniform(10), arc4random_uniform(10))];
 }
 
 //  We hit a rock with a missile
@@ -424,6 +426,8 @@
 #endif
             self.score = self.score + 300;
             [rock removeFromParent];
+            
+            //  Cheap way to get something to average about 50% of the time.
             if (arc4random_uniform(10) > 5) {
                 for (NSInteger i = 0; i < 2; i++) {
                     JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBtinyRock];

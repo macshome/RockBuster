@@ -22,6 +22,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
 
 @interface JRWShipSprite ()
 @property CFTimeInterval timeLastFiredMissile;
+@property (strong, nonatomic) SKAction *engineNoise;
 @end
 
 @implementation JRWShipSprite
@@ -60,6 +61,10 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     
     ship.name = @"Ship";
     
+//    ship.engineNoise = [SKAction playSoundFileNamed:@"RocketThrusters.caf" waitForCompletion:YES];
+    
+    
+    
 #if SHOW_PHYSICS_OVERLAY
     SKShapeNode *shipOverlayShape = [[SKShapeNode alloc] init];
     shipOverlayShape.path = path;
@@ -86,6 +91,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
 {
     CGFloat shipDirection = [self shipOrientation];
     [self.physicsBody applyForce:CGVectorMake(mainEngineThrust*cosf(shipDirection), mainEngineThrust*sinf(shipDirection))];
+//    [self runAction:self.engineNoise];
     
 }
 
