@@ -9,21 +9,18 @@
 #import "JRWGameScene.h"
 #import "JRWShipSprite.h"
 #import "JRWRockSprite.h"
+#import "JRWHUDSprite.h"
 
 
 @interface JRWGameScene ()
 
 @property JRWShipSprite *ship;
-@property SKSpriteNode *hyperspaceBar;
+@property JRWHUDSprite *HUD;
+
 @property SKNode *playObjects;
 @property SKAction *rockExplode;
 
-@property NSInteger level;
-@property NSInteger score;
-@property NSInteger hyperspaceCount;
-
 @property BOOL contentCreated;
-@property BOOL hyperspaceOK;
 
 @end
 
@@ -52,11 +49,6 @@
     self.backgroundColor = [SKColor blackColor];
     self.rockExplode = [SKAction playSoundFileNamed:@"boom6.caf" waitForCompletion:NO];
     
-    //  Set to level 1 and score to 0
-    self.level = 10;
-    self.score = 0;
-    self.hyperspaceOK = NO;
-    
     // Add the HUD node
     [self addHUD];
     
@@ -68,7 +60,7 @@
     //  Add the sprites
     [self addShipShouldUseTransition:NO];
     [self addRocks];
-    [self updateHyperspaceTimer];
+    [self.HUD updateHyperspaceTimer];
     
     //  Set gravity
     self.physicsWorld.gravity = CGVectorMake(0, 0);
@@ -77,53 +69,21 @@
     
 }
 
-//TODO: Move HUD and hyperspace bar nethods to their own class?
 //  Add the HUD
 - (void)addHUD {
-    SKNode *hud = [[SKNode alloc] init];
+    //  Create a new HUD
+    self.HUD = [JRWHUDSprite createHUDforFrame:self.frame];
     
-    //  Put the HUD above the play field so that things can move under it
-    hud.zPosition = 1;
-    hud.name = @"HUD";
+    // Set the debug level and score here to override the defaults of level 1, score 0
+    self.HUD.level = 5;
+    self.HUD.score = 0;
     
-    //  Level label
-    SKLabelNode *levelLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
-    levelLabel.name = @"level";
-    levelLabel.text = [NSString stringWithFormat:@"Level %ld", (long)self.level];
-    levelLabel.fontSize = 24;
-    levelLabel.position = CGPointMake(CGRectGetMaxX(self.frame) - 30, CGRectGetMaxY(self.frame) -30);
-    levelLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
-    
-    //  Score label
-    SKLabelNode *scoreLabel =[SKLabelNode labelNodeWithFontNamed:@"Futura"];
-    scoreLabel.name = @"score";
-    scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.score];
-    scoreLabel.fontSize = 24;
-    scoreLabel.position = CGPointMake(CGRectGetMinX(self.frame) + 30, CGRectGetMaxY(self.frame) -30);
-    scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-    
-    //  Hyperspace bar
-    self.hyperspaceBar = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(0, 21)];
-    self.hyperspaceBar.name = @"hyperspaceBar";
-    self.hyperspaceBar.anchorPoint = CGPointMake(0.0, 0.5);
-    self.hyperspaceBar.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame) - 20);
-    SKLabelNode *hbarLabel = [SKLabelNode labelNodeWithFontNamed:@"Futura"];
-    hbarLabel.name = @"hyperspaceLabel";
-    hbarLabel.text = @"Hyperdrive:";
-    hbarLabel.fontSize = 24;
-    hbarLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
-    hbarLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
-    [self.hyperspaceBar addChild:hbarLabel];
-    
-    //  Add the components to the HUD node
-    [hud addChild:levelLabel];
-    [hud addChild:scoreLabel];
-    [hud addChild:self.hyperspaceBar];
-    
-    //  Add the hud node to the scene
-    [self addChild:hud];
+    //  Add the node
+    [self addChild:self.HUD];
     
 }
+
+
 
 #pragma mark - Game Play Objects
 //  Add a ship. The transition is for when adding a new ship to an existing game
@@ -157,14 +117,14 @@
     
     //  How many rocks are there? Make that many asteroids
     NSInteger rockCount = 0;
-    while ( rockCount < self.level) {
+    while ( rockCount < self.HUD.level) {
         
         JRWRockSprite *rock = [JRWRockSprite createRandomRock];
         
         rock.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
         
 #if DEBUG
-        NSLog(@"Level is %ld with %ld rocks in array", self.level, (long)rockCount);
+        NSLog(@"Level is %ld with %ld rocks in array", self.HUD.level, (long)rockCount);
 #endif
         
         [self.playObjects addChild:rock];
@@ -226,7 +186,7 @@
 - (void)hyperspace {
     
     //  If hyperspace is OK move to another z plane, move randomly, then re-appear, and move back.
-    if (self.hyperspaceOK) {
+    if (self.HUD.hyperspaceOK) {
         self.ship.zPosition = -1;
         self.ship.alpha = 0.0;
         
@@ -236,35 +196,9 @@
         SKAction *fadeIn = [SKAction fadeInWithDuration:0.25];
         [self.ship runAction:fadeIn completion:^{
             self.ship.zPosition = 0;
-            [self resetHyperspaceTimer];
+            [self.HUD resetHyperspaceTimer];
         }];
-        
     }
-    
-}
-
-//  Make the hyperspace bar grow over 10 seconds then enable hyperspace
-- (void)updateHyperspaceTimer {
-    self.hyperspaceBar.color = [SKColor redColor];
-    SKAction *hyperspaceBarGrow = [SKAction resizeToWidth:100.0 duration:10.0];
-    [self.hyperspaceBar runAction:hyperspaceBarGrow completion:^{
-        self.hyperspaceOK = YES;
-        self.hyperspaceBar.color = [SKColor greenColor];
-    }];
-    
-}
-
-//  Set the hyperspace timer back to 0
-- (void)resetHyperspaceTimer {
-    self.hyperspaceOK = NO;
-    
-    self.hyperspaceBar.color = [SKColor yellowColor];
-    SKAction *hyperspaceBarShrink = [SKAction resizeToWidth:0.0 duration:0.25];
-    [self.hyperspaceBar runAction:hyperspaceBarShrink completion:^{
-        [self updateHyperspaceTimer];
-    }];
-    
-    
 }
 
 #pragma mark - Game updates and logic
@@ -353,7 +287,7 @@
     [missile removeFromParent];
     [self breakRock:rock];
     
-    
+    // Generic rock boom
     [self runAction:self.rockExplode];
     
 }
@@ -373,17 +307,17 @@
             NSLog(@"Big rock");
 #endif
             [rock removeFromParent];
-            self.score = self.score + 100;
+            self.HUD.score = self.HUD.score + 100;
             for (NSInteger i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBlargeRock];
                 
                 newRock.position = position;
-  
+                
                 [self.playObjects addChild:newRock];
                 [self rockPhysics:newRock];
                 newRock.physicsBody.velocity =  CGVectorMake(linearVelocity.dx * 1.2, linearVelocity.dy * 1.2);
                 newRock.physicsBody.angularVelocity = (angularVelocity + 3.0);
-               
+                
                 
             }
             
@@ -394,7 +328,7 @@
             NSLog(@"Large rock");
 #endif
             [rock removeFromParent];
-            self.score = self.score + 150;
+            self.HUD.score = self.HUD.score + 150;
             for (NSInteger i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBmediumRock];
                 
@@ -412,7 +346,7 @@
 #if DEBUG
             NSLog(@"Medium rock");
 #endif
-            self.score = self.score + 200;
+            self.HUD.score = self.HUD.score + 200;
             [rock removeFromParent];
             for (NSInteger i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBsmallRock];
@@ -430,7 +364,7 @@
 #if DEBUG
             NSLog(@"small rock");
 #endif
-            self.score = self.score + 300;
+            self.HUD.score = self.HUD.score + 300;
             [rock removeFromParent];
             
             //  Cheap way to get something to average about 50% of the time.
@@ -446,20 +380,20 @@
                     newRock.physicsBody.angularVelocity = (angularVelocity + .5);
                 }
             }
-        
+            
             break;
             
         case RBtinyRock:
 #if DEBUG
             NSLog(@"tiny rock");
 #endif
-            self.score = self.score + 600;
+            self.HUD.score = self.HUD.score + 600;
             [rock removeFromParent];
             break;
     }
     
     //  Update the score label
-    [(SKLabelNode *)[self childNodeWithName:@"HUD/score"] setText: [NSString stringWithFormat:@"Score: %ld", (long)self.score]];
+    [(SKLabelNode *)[self childNodeWithName:@"HUD/score"] setText: [NSString stringWithFormat:@"Score: %ld", (long)self.HUD.score]];
     
 }
 
@@ -589,7 +523,7 @@
                 case ' ':
                     actions[RBCPlayerAction] = YES;
                     break;
-
+                    
             }
         }
     }

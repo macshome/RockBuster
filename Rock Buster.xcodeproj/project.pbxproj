@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4263B8761864AA2700EE423A /* JRWGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263B8751864AA2700EE423A /* JRWGameScene.m */; };
+		426857061893127B0071FB7E /* JRWHUDSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426857051893127B0071FB7E /* JRWHUDSprite.m */; };
 		426F71391862925E00ABA3C3 /* JRWShipSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F71381862925E00ABA3C3 /* JRWShipSprite.m */; };
 		426F713C1862927400ABA3C3 /* JRWRockSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F713B1862927400ABA3C3 /* JRWRockSprite.m */; };
 		429D95D618624D7F008B524D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D518624D7F008B524D /* Cocoa.framework */; };
@@ -42,6 +43,8 @@
 /* Begin PBXFileReference section */
 		4263B8741864AA2700EE423A /* JRWGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWGameScene.h; sourceTree = "<group>"; };
 		4263B8751864AA2700EE423A /* JRWGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWGameScene.m; sourceTree = "<group>"; };
+		426857041893127B0071FB7E /* JRWHUDSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWHUDSprite.h; sourceTree = "<group>"; };
+		426857051893127B0071FB7E /* JRWHUDSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWHUDSprite.m; sourceTree = "<group>"; };
 		426F71371862925E00ABA3C3 /* JRWShipSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWShipSprite.h; sourceTree = "<group>"; };
 		426F71381862925E00ABA3C3 /* JRWShipSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWShipSprite.m; sourceTree = "<group>"; };
 		426F713A1862927400ABA3C3 /* JRWRockSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWRockSprite.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				429D95EB18624D7F008B524D /* JRWTitleScene.m */,
 				4263B8741864AA2700EE423A /* JRWGameScene.h */,
 				4263B8751864AA2700EE423A /* JRWGameScene.m */,
+				426857041893127B0071FB7E /* JRWHUDSprite.h */,
+				426857051893127B0071FB7E /* JRWHUDSprite.m */,
 				426F71371862925E00ABA3C3 /* JRWShipSprite.h */,
 				426F71381862925E00ABA3C3 /* JRWShipSprite.m */,
 				426F713A1862927400ABA3C3 /* JRWRockSprite.h */,
@@ -301,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4263B8761864AA2700EE423A /* JRWGameScene.m in Sources */,
+				426857061893127B0071FB7E /* JRWHUDSprite.m in Sources */,
 				426F71391862925E00ABA3C3 /* JRWShipSprite.m in Sources */,
 				426F713C1862927400ABA3C3 /* JRWRockSprite.m in Sources */,
 				429D95EC18624D7F008B524D /* JRWTitleScene.m in Sources */,
