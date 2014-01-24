@@ -16,6 +16,7 @@
 @property JRWShipSprite *ship;
 @property SKSpriteNode *hyperspaceBar;
 @property SKNode *playObjects;
+@property SKAction *rockExplode;
 
 @property NSInteger level;
 @property NSInteger score;
@@ -49,6 +50,7 @@
     
     /* Setup your scene here */
     self.backgroundColor = [SKColor blackColor];
+    self.rockExplode = [SKAction playSoundFileNamed:@"boom6.caf" waitForCompletion:NO];
     
     //  Set to level 1 and score to 0
     self.level = 10;
@@ -347,8 +349,12 @@
 
 //  We hit a rock with a missile
 - (void)hitRock:(SKNode *)rock withMissile:(SKNode *)missile {
+    missile.physicsBody = nil;
     [missile removeFromParent];
     [self breakRock:rock];
+    
+    
+    [self runAction:self.rockExplode];
     
 }
 

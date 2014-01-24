@@ -17,12 +17,14 @@
 static const CGFloat mainEngineThrust = 1000;
 static const CGFloat firingInterval = 0.3;
 static const CGFloat missileLaunchDistance = 40;
-static const CGFloat engineIdleAlpha = 0.05;
+//static const CGFloat engineIdleAlpha = 0.05;
 static const CGFloat missileLaunchVelocity = 1000.0;
 
 @interface JRWShipSprite ()
 @property CFTimeInterval timeLastFiredMissile;
-@property (strong, nonatomic) SKAction *engineNoise;
+@property SKAction *engineNoise;
+@property SKAction *missileNoise;
+@property BOOL playingSound;
 @end
 
 @implementation JRWShipSprite
@@ -61,7 +63,9 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     
     ship.name = @"Ship";
     
+    ship.playingSound = NO;
 //    ship.engineNoise = [SKAction playSoundFileNamed:@"RocketThrusters.caf" waitForCompletion:YES];
+    ship.missileNoise = [SKAction playSoundFileNamed:@"boom1.caf" waitForCompletion:YES];
     
     
     
@@ -91,9 +95,21 @@ static const CGFloat missileLaunchVelocity = 1000.0;
 {
     CGFloat shipDirection = [self shipOrientation];
     [self.physicsBody applyForce:CGVectorMake(mainEngineThrust*cosf(shipDirection), mainEngineThrust*sinf(shipDirection))];
-//    [self runAction:self.engineNoise];
+//    SKAction *sound = [SKAction playSoundFileNamed:@"RocketThrusters.caf" waitForCompletion:YES];
+//    [self runAction:sound];
     
 }
+
+//- (void)playEngineSound {
+//    if (!self.playingSound) {
+//        self.playingSound = YES;
+//        [self runAction:self.engineNoise completion:^{
+//            self.playingSound = NO;
+//        }];
+//        
+//    }
+//    self.playingSound = NO;
+//}
 
 //  TODO: Turn off engine exhaust
 - (void)deactivateMainEngine
@@ -140,6 +156,8 @@ static const CGFloat missileLaunchVelocity = 1000.0;
         // Just using a constant speed on the missiles
         missile.physicsBody.velocity = CGVectorMake(missileLaunchVelocity*cosf(shipDirection),
                                                     missileLaunchVelocity*sinf(shipDirection));
+        
+        [self runAction:self.missileNoise];
         
         
     }

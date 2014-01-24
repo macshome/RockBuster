@@ -24,6 +24,8 @@
 		429D960418624D7F008B524D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 429D960218624D7F008B524D /* InfoPlist.strings */; };
 		429D960618624D7F008B524D /* Rock_BusterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D960518624D7F008B524D /* Rock_BusterTests.m */; };
 		429D961018624E87008B524D /* art.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 429D960F18624E87008B524D /* art.atlas */; };
+		42E9FA591891E30900005B85 /* boom1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 42E9FA581891E30900005B85 /* boom1.caf */; };
+		42E9FA5B1891E5A300005B85 /* boom6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 42E9FA5A1891E51E00005B85 /* boom6.caf */; };
 		42FD23FB188F0B330005F527 /* RocketThrusters.caf in Resources */ = {isa = PBXBuildFile; fileRef = 42FD23FA188F0B330005F527 /* RocketThrusters.caf */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +69,8 @@
 		429D960318624D7F008B524D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		429D960518624D7F008B524D /* Rock_BusterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Rock_BusterTests.m; sourceTree = "<group>"; };
 		429D960F18624E87008B524D /* art.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = art.atlas; path = "Rock Buster/art.atlas"; sourceTree = "<group>"; };
+		42E9FA581891E30900005B85 /* boom1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boom1.caf; sourceTree = "<group>"; };
+		42E9FA5A1891E51E00005B85 /* boom6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boom6.caf; sourceTree = "<group>"; };
 		42FD23FA188F0B330005F527 /* RocketThrusters.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RocketThrusters.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,6 +191,8 @@
 		429DC61B188DDF730036DFAE /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				42E9FA5A1891E51E00005B85 /* boom6.caf */,
+				42E9FA581891E30900005B85 /* boom1.caf */,
 				42FD23FA188F0B330005F527 /* RocketThrusters.caf */,
 			);
 			path = Sounds;
@@ -271,6 +277,8 @@
 				429D961018624E87008B524D /* art.atlas in Resources */,
 				429D95F418624D7F008B524D /* Images.xcassets in Resources */,
 				429D95E218624D7F008B524D /* InfoPlist.strings in Resources */,
+				42E9FA591891E30900005B85 /* boom1.caf in Resources */,
+				42E9FA5B1891E5A300005B85 /* boom6.caf in Resources */,
 				429D95E818624D7F008B524D /* Credits.rtf in Resources */,
 				429D95EA18624D7F008B524D /* MainMenu.xib in Resources */,
 				42FD23FB188F0B330005F527 /* RocketThrusters.caf in Resources */,
