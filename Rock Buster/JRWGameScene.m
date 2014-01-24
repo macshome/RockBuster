@@ -74,9 +74,11 @@
     //  Create a new HUD
     self.HUD = [JRWHUDSprite createHUDforFrame:self.frame];
     
+#if DEBUG
     // Set the debug level and score here to override the defaults of level 1, score 0
     self.HUD.level = 5;
     self.HUD.score = 0;
+#endif
     
     //  Add the node
     [self addChild:self.HUD];

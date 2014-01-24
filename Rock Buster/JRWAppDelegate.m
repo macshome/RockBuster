@@ -22,8 +22,12 @@
         NSLog(@"Loaded art atlas");
     }];
     
-    /* Pick a size for the scene */
-    JRWTitleScene *scene = [JRWTitleScene sceneWithSize:CGSizeMake(1024, 768)];
+    /* Pick a size for the scene
+     Start with the current main display size.
+     */
+    NSInteger width = [[NSScreen mainScreen] frame].size.width;
+    NSInteger height = [[NSScreen mainScreen] frame].size.height;
+    JRWTitleScene *scene = [JRWTitleScene sceneWithSize:CGSizeMake(width, height)];
 
     /* Set the scale mode to scale to fit the window */
     scene.scaleMode = SKSceneScaleModeAspectFit;
