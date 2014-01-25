@@ -123,8 +123,8 @@
     
     if (self.healthBar.size.width < 50) {
         self.healthBar.color = [SKColor redColor];
-        SKAction *fadeOut = [SKAction fadeOutWithDuration:0.25];
-        SKAction *fadeIn = [SKAction fadeInWithDuration:0.25];
+        SKAction *fadeOut = [SKAction fadeOutWithDuration:0.3];
+        SKAction *fadeIn = [SKAction fadeInWithDuration:0.3];
         SKAction *blink = [SKAction sequence:@[fadeOut, fadeIn]];
         [self.healthBar runAction:[SKAction repeatActionForever:blink] withKey:@"blinking"];
                 
