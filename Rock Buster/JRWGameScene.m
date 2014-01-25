@@ -449,6 +449,7 @@
     //  Hit the ship with a rock
     if ((secondBody.categoryBitMask & RBCshipCategory) != 0) {
         [self.ship applyDamage:contact.collisionImpulse / 2];
+        [self.HUD shrinkHealthBar:(CGFloat)self.ship.health / 10];
         }
 }
 

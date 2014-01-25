@@ -168,6 +168,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
 #pragma mark - Damage Handlers
 - (void)applyDamage:(NSInteger)ammount {
     if (ammount >= self.health) {
+        self.health = 0;
         [self explode];
     }
     
@@ -180,6 +181,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     }
     
     if (ammount >= self.health) {
+        self.health = 0;
         [self explode];
     }
     

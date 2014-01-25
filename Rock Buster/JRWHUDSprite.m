@@ -11,6 +11,7 @@
 @interface JRWHUDSprite ()
 
 @property SKSpriteNode *hyperspaceBar;
+@property SKSpriteNode *healthBar;
 
 @end
 
@@ -51,7 +52,7 @@
     hud.hyperspaceBar = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(0, 21)];
     hud.hyperspaceBar.name = @"hyperspaceBar";
     hud.hyperspaceBar.anchorPoint = CGPointMake(0.0, 0.5);
-    hud.hyperspaceBar.position = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect) - 20);
+    hud.hyperspaceBar.position = CGPointMake(CGRectGetMaxX(rect) - 400, CGRectGetMaxY(rect) - 25);
     SKLabelNode *hbarLabel = [SKLabelNode labelNodeWithFontNamed:@"Futura"];
     hbarLabel.name = @"hyperspaceLabel";
     hbarLabel.text = @"Hyperdrive:";
@@ -60,10 +61,24 @@
     hbarLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
     [hud.hyperspaceBar addChild:hbarLabel];
     
+    //  Health bar
+    hud.healthBar = [SKSpriteNode spriteNodeWithColor:[SKColor greenColor] size:CGSizeMake(100, 21)];
+    hud.healthBar.name = @"healthBar";
+    hud.healthBar.anchorPoint = CGPointMake(0.0, 0.5);
+    hud.healthBar.position = CGPointMake(CGRectGetMinX(rect) + 400, CGRectGetMaxY(rect) - 25);
+    SKLabelNode *healthBarLabel = [SKLabelNode labelNodeWithFontNamed:@"Futura"];
+    healthBarLabel.name = @"healthBarLabel";
+    healthBarLabel.text = @"Shields:";
+    healthBarLabel.fontSize = 24;
+    healthBarLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
+    healthBarLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
+    [hud.healthBar addChild:healthBarLabel];
+    
     //  Add the components to the HUD node
     [hud addChild:levelLabel];
     [hud addChild:scoreLabel];
     [hud addChild:hud.hyperspaceBar];
+    [hud addChild:hud.healthBar];
     
     //  Return the hud
     return hud;
@@ -92,6 +107,29 @@
         [self updateHyperspaceTimer];
     }];
     
+    
+}
+
+#pragma mark - Health Bar Methods
+//  Shrink the bar by the proportional ammount of damage
+- (void)shrinkHealthBar:(CGFloat)ammount {
+    SKAction *healthBarShrink = [SKAction resizeToWidth:ammount duration:0.25];
+    [self.healthBar runAction:healthBarShrink];
+    
+    // Set the color according to how bad things are
+    if (self.healthBar.size.width < 75.0) {
+        self.healthBar.color = [SKColor yellowColor];
+    }
+    
+    if (self.healthBar.size.width < 50) {
+        self.healthBar.color = [SKColor redColor];
+        SKAction *fadeOut = [SKAction fadeOutWithDuration:0.25];
+        SKAction *fadeIn = [SKAction fadeInWithDuration:0.25];
+        SKAction *blink = [SKAction sequence:@[fadeOut, fadeIn]];
+        [self.healthBar runAction:[SKAction repeatActionForever:blink] withKey:@"blinking"];
+                
+    }
+  
     
 }
 

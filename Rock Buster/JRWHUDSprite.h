@@ -22,5 +22,8 @@
 - (void)updateHyperspaceTimer;
 - (void)resetHyperspaceTimer;
 
+//  Health bar methods
+- (void)shrinkHealthBar:(CGFloat)ammount;
+
 
 @end
