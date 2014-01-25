@@ -18,7 +18,7 @@
 @property JRWHUDSprite *HUD;
 
 @property SKNode *playObjects;
-@property SKAction *rockExplode;
+@property SKAction *rockExplodeSound;
 
 @property BOOL contentCreated;
 
@@ -47,7 +47,7 @@
     
     /* Setup your scene here */
     self.backgroundColor = [SKColor blackColor];
-    self.rockExplode = [SKAction playSoundFileNamed:@"boom6.caf" waitForCompletion:NO];
+    self.rockExplodeSound = [SKAction playSoundFileNamed:@"boom6.caf" waitForCompletion:NO];
     
     // Add the HUD node
     [self addHUD];
@@ -306,7 +306,7 @@
     [self breakRock:rock];
     
     // Generic rock boom
-    [self runAction:self.rockExplode];
+    [self runAction:self.rockExplodeSound];
     
 }
 
@@ -431,24 +431,25 @@
     // the code swaps the two bodies if they are out of order. This allows the code
     // to only test collisions once.
     
-    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
-    {
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
         firstBody = contact.bodyA;
         secondBody = contact.bodyB;
     }
-    else
-    {
+    else {
         firstBody = contact.bodyB;
         secondBody = contact.bodyA;
     }
     
     // Missiles only hit rocks
     
-    if ((firstBody.categoryBitMask & RBCmissileCategory) != 0)
-    {
+    if ((firstBody.categoryBitMask & RBCmissileCategory) != 0) {
         [self hitRock:secondBody.node withMissile:firstBody.node];
     }
     
+    //  Hit the ship with a rock
+    if ((secondBody.categoryBitMask & RBCshipCategory) != 0) {
+        [self.ship applyDamage:contact.collisionImpulse / 2];
+        }
 }
 
 //  Ship controls

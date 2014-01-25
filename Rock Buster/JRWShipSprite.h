@@ -13,12 +13,18 @@
 //  Class method to make a new ship
 + (instancetype)createShip;
 
-// methods used to control the ship.
+//  Methods used to control the ship.
 - (void)activateMainEngine;
 - (void)deactivateMainEngine;
 - (void)rotateShipLeft;
 - (void)rotateShipRight;
 - (void)attemptMissileLaunch:(NSTimeInterval)currentTime;
+
+//  Damage the ship
+- (void) applyDamage:(NSInteger)ammount;
+
+//  Health
+@property NSInteger health;
 
 
 

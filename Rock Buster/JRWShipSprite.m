@@ -17,7 +17,6 @@
 static const CGFloat mainEngineThrust = 1000;
 static const CGFloat firingInterval = 0.3;
 static const CGFloat missileLaunchDistance = 40;
-//static const CGFloat engineIdleAlpha = 0.05;
 static const CGFloat missileLaunchVelocity = 1000.0;
 
 @interface JRWShipSprite ()
@@ -51,8 +50,8 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     
     ship.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
     
-    //  Give the ship a mass of 1 and some linearDamping that makes us slow down after letting off the gas.
-    ship.physicsBody.mass = 1;
+    //  Give the ship a mass of 2 and some linearDamping that makes us slow down after letting off the gas.
+    ship.physicsBody.mass = 2;
     ship.physicsBody.linearDamping = .7;
     ship.physicsBody.angularDamping = 1.0;
     
@@ -62,8 +61,9 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     ship.physicsBody.contactTestBitMask = RBCasteroidCategory;
     
     ship.name = @"Ship";
+    ship.health = 1000;
     
-    ship.playingSound = NO;
+//    ship.playingSound = NO;
 //    ship.engineNoise = [SKAction playSoundFileNamed:@"RocketThrusters.caf" waitForCompletion:YES];
     ship.missileNoise = [SKAction playSoundFileNamed:@"boom1.caf" waitForCompletion:YES];
     
@@ -163,6 +163,31 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     }
     
     
+}
+
+#pragma mark - Damage Handlers
+- (void)applyDamage:(NSInteger)ammount {
+    if (ammount >= self.health) {
+        [self explode];
+    }
+    
+    if (ammount < self.health) {
+        self.health -= ammount;
+#if DEBUG
+        NSLog(@"%ld damage. Health is now %ld", (long)ammount, (long)self.health);
+#endif
+    
+    }
+    
+    if (ammount >= self.health) {
+        [self explode];
+    }
+    
+}
+
+- (void)explode {
+   
+    [self runAction:[SKAction removeFromParent]];
 }
 
 @end
