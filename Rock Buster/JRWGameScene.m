@@ -277,9 +277,25 @@
     rock.physicsBody.collisionBitMask = (RBCasteroidCategory | RBCshipCategory);
     rock.physicsBody.contactTestBitMask = (RBCasteroidCategory | RBCmissileCategory | RBCshipCategory);
     rock.physicsBody.usesPreciseCollisionDetection = YES;
-    rock.physicsBody.mass = 3;
+    switch ([rock.name integerValue]) {
+        case RBbigRock:
+            rock.physicsBody.mass = 5;
+            break;
+        case RBlargeRock:
+            rock.physicsBody.mass = 4;
+            break;
+        case RBmediumRock:
+            rock.physicsBody.mass = 3;
+            break;;
+        case RBsmallRock:
+            rock.physicsBody.mass = 2;
+            break;
+        case RBtinyRock:
+            rock.physicsBody.mass = 1;
+            break;
+    }
     rock.physicsBody.angularDamping = 0.0;
-    [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(10)-10];
+    [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(1)-1];
     [rock.physicsBody applyImpulse:CGVectorMake(arc4random_uniform(10), arc4random_uniform(10))];
 }
 
