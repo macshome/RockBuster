@@ -106,8 +106,6 @@
     [self.hyperspaceBar runAction:hyperspaceBarShrink completion:^{
         [self updateHyperspaceTimer];
     }];
-    
-    
 }
 
 #pragma mark - Health Bar Methods
@@ -127,9 +125,15 @@
         SKAction *fadeIn = [SKAction fadeInWithDuration:0.3];
         SKAction *blink = [SKAction sequence:@[fadeOut, fadeIn]];
         [self.healthBar runAction:[SKAction repeatActionForever:blink] withKey:@"blinking"];
-                
     }
-  
+}
+
+//  Reset the health bar
+- (void)resetHealthBar {
+    [self.healthBar removeAllActions];
+    SKAction *resetHealthBar = [SKAction resizeToWidth:100.0 duration:1.0];
+    [self.healthBar runAction:resetHealthBar];
+    self.healthBar.color = [SKColor greenColor];
     
 }
 

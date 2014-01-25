@@ -24,6 +24,7 @@
 
 //  Health bar methods
 - (void)shrinkHealthBar:(CGFloat)ammount;
+- (void)resetHealthBar;
 
 
 @end
