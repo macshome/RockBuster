@@ -99,6 +99,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4268570718944A230071FB7E /* Game Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				426857041893127B0071FB7E /* JRWHUDSprite.h */,
+				426857051893127B0071FB7E /* JRWHUDSprite.m */,
+				426F71371862925E00ABA3C3 /* JRWShipSprite.h */,
+				426F71381862925E00ABA3C3 /* JRWShipSprite.m */,
+				426F713A1862927400ABA3C3 /* JRWRockSprite.h */,
+				426F713B1862927400ABA3C3 /* JRWRockSprite.m */,
+			);
+			name = "Game Sprites";
+			sourceTree = "<group>";
+		};
 		429D95C918624D7F008B524D = {
 			isa = PBXGroup;
 			children = (
@@ -148,14 +161,9 @@
 				429D95EB18624D7F008B524D /* JRWTitleScene.m */,
 				4263B8741864AA2700EE423A /* JRWGameScene.h */,
 				4263B8751864AA2700EE423A /* JRWGameScene.m */,
-				426857041893127B0071FB7E /* JRWHUDSprite.h */,
-				426857051893127B0071FB7E /* JRWHUDSprite.m */,
-				426F71371862925E00ABA3C3 /* JRWShipSprite.h */,
-				426F71381862925E00ABA3C3 /* JRWShipSprite.m */,
-				426F713A1862927400ABA3C3 /* JRWRockSprite.h */,
-				426F713B1862927400ABA3C3 /* JRWRockSprite.m */,
 				429D95F018624D7F008B524D /* JRWAppDelegate.h */,
 				429D95EE18624D7F008B524D /* JRWAppDelegate.m */,
+				4268570718944A230071FB7E /* Game Sprites */,
 				429D95F318624D7F008B524D /* Images.xcassets */,
 				429D95DE18624D7F008B524D /* Supporting Files */,
 			);
