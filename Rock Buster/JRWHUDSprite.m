@@ -132,7 +132,8 @@
 //  Reset the health bar
 - (void)resetHealthBar {
     [self.healthBar removeAllActions];
-    SKAction *resetHealthBar = [SKAction resizeToWidth:100.0 duration:1.0];
+    SKAction *resetHealthBar = [SKAction sequence:@[[SKAction fadeInWithDuration:0],
+                                                    [SKAction resizeToWidth:100.0 duration:1.0]]];
     [self.healthBar runAction:resetHealthBar];
     self.healthBar.color = [SKColor greenColor];
     

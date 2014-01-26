@@ -64,11 +64,11 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     ship.name = @"Ship";
     ship.health = 1000;
     
-//    ship.playingSound = NO;
-//    ship.engineNoise = [SKAction playSoundFileNamed:@"RocketThrusters.caf" waitForCompletion:YES];
+    //    ship.playingSound = NO;
+    //    ship.engineNoise = [SKAction playSoundFileNamed:@"RocketThrusters.caf" waitForCompletion:YES];
     ship.missileSound = [SKAction playSoundFileNamed:@"boom1.caf" waitForCompletion:YES];
     ship.warningSound = [SKAction repeatActionForever:[SKAction playSoundFileNamed:@"alarm.caf" waitForCompletion:NO]];
-
+    
     
     
     
@@ -99,8 +99,8 @@ static const CGFloat missileLaunchVelocity = 1000.0;
 {
     CGFloat shipDirection = [self shipOrientation];
     [self.physicsBody applyForce:CGVectorMake(mainEngineThrust*cosf(shipDirection), mainEngineThrust*sinf(shipDirection))];
-//    SKAction *sound = [SKAction playSoundFileNamed:@"RocketThrusters.caf" waitForCompletion:YES];
-//    [self runAction:sound];
+    //    SKAction *sound = [SKAction playSoundFileNamed:@"RocketThrusters.caf" waitForCompletion:YES];
+    //    [self runAction:sound];
     
 }
 
@@ -110,7 +110,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
 //        [self runAction:self.engineNoise completion:^{
 //            self.playingSound = NO;
 //        }];
-//        
+//
 //    }
 //    self.playingSound = NO;
 //}
@@ -181,7 +181,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
 #if DEBUG
         NSLog(@"%ld damage. Health is now %ld", (long)ammount, (long)self.health);
 #endif
-    
+        
     }
     
     if (ammount >= self.health) {
@@ -196,8 +196,9 @@ static const CGFloat missileLaunchVelocity = 1000.0;
 }
 
 - (void)explode {
-   
+    
     [self runAction:[SKAction removeFromParent]];
+    [self removeAllActions];
 }
 
 @end

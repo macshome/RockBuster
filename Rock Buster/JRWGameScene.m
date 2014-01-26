@@ -421,11 +421,12 @@
     
     //  Update the score label
     [(SKLabelNode *)[self childNodeWithName:@"HUD/score"] setText: [NSString stringWithFormat:@"Score: %ld", (long)self.HUD.score]];
-
+    
+    //  If we are out of rocks it's time for the next level.
     if (self.rockCount == 0) {
         [self advanceLevel];
     };
-
+    
     
 }
 
@@ -477,7 +478,7 @@
     if ((secondBody.categoryBitMask & RBCshipCategory) != 0) {
         [self.ship applyDamage:contact.collisionImpulse / 2];
         [self.HUD shrinkHealthBar:(CGFloat)self.ship.health / 10];
-        }
+    }
 }
 
 //  Ship controls
