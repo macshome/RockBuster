@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4263B8761864AA2700EE423A /* JRWGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263B8751864AA2700EE423A /* JRWGameScene.m */; };
 		426857061893127B0071FB7E /* JRWHUDSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426857051893127B0071FB7E /* JRWHUDSprite.m */; };
+		4268570918946C840071FB7E /* alarm.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4268570818946C840071FB7E /* alarm.caf */; };
 		426F71391862925E00ABA3C3 /* JRWShipSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F71381862925E00ABA3C3 /* JRWShipSprite.m */; };
 		426F713C1862927400ABA3C3 /* JRWRockSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F713B1862927400ABA3C3 /* JRWRockSprite.m */; };
 		429D95D618624D7F008B524D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D518624D7F008B524D /* Cocoa.framework */; };
@@ -45,6 +46,7 @@
 		4263B8751864AA2700EE423A /* JRWGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWGameScene.m; sourceTree = "<group>"; };
 		426857041893127B0071FB7E /* JRWHUDSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWHUDSprite.h; sourceTree = "<group>"; };
 		426857051893127B0071FB7E /* JRWHUDSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWHUDSprite.m; sourceTree = "<group>"; };
+		4268570818946C840071FB7E /* alarm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.caf; sourceTree = "<group>"; };
 		426F71371862925E00ABA3C3 /* JRWShipSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWShipSprite.h; sourceTree = "<group>"; };
 		426F71381862925E00ABA3C3 /* JRWShipSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWShipSprite.m; sourceTree = "<group>"; };
 		426F713A1862927400ABA3C3 /* JRWRockSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWRockSprite.h; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		429DC61B188DDF730036DFAE /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				4268570818946C840071FB7E /* alarm.caf */,
 				42E9FA5A1891E51E00005B85 /* boom6.caf */,
 				42E9FA581891E30900005B85 /* boom1.caf */,
 				42FD23FA188F0B330005F527 /* RocketThrusters.caf */,
@@ -289,6 +292,7 @@
 			files = (
 				429D961018624E87008B524D /* art.atlas in Resources */,
 				429D95F418624D7F008B524D /* Images.xcassets in Resources */,
+				4268570918946C840071FB7E /* alarm.caf in Resources */,
 				429D95E218624D7F008B524D /* InfoPlist.strings in Resources */,
 				42E9FA591891E30900005B85 /* boom1.caf in Resources */,
 				42E9FA5B1891E5A300005B85 /* boom6.caf in Resources */,

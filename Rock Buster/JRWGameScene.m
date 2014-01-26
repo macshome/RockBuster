@@ -419,7 +419,6 @@
 
 
 //  Contact callback (Adapted from Apple sample code)
-//  TODO: Add ship damaage
 - (void)didBeginContact:(SKPhysicsContact *)contact {
     
     //  SKPhysicsBody objects to hold the passed in objects

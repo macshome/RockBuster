@@ -109,6 +109,7 @@
 }
 
 #pragma mark - Health Bar Methods
+//  TODO: Combine the the healthbar methods into one that just adjusts as needed. That way we can recover health.
 //  Shrink the bar by the proportional ammount of damage
 - (void)shrinkHealthBar:(CGFloat)ammount {
     SKAction *healthBarShrink = [SKAction resizeToWidth:ammount duration:0.25];
@@ -124,7 +125,7 @@
         SKAction *fadeOut = [SKAction fadeOutWithDuration:0.3];
         SKAction *fadeIn = [SKAction fadeInWithDuration:0.3];
         SKAction *blink = [SKAction sequence:@[fadeOut, fadeIn]];
-        [self.healthBar runAction:[SKAction repeatActionForever:blink] withKey:@"blinking"];
+        [self.healthBar runAction:[SKAction repeatActionForever:blink] withKey:@"blink"];
     }
 }
 

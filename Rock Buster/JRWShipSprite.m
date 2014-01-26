@@ -21,8 +21,9 @@ static const CGFloat missileLaunchVelocity = 1000.0;
 
 @interface JRWShipSprite ()
 @property CFTimeInterval timeLastFiredMissile;
-@property SKAction *engineNoise;
-@property SKAction *missileNoise;
+@property SKAction *engineSound;
+@property SKAction *missileSound;
+@property SKAction *warningSound;
 @property BOOL playingSound;
 @end
 
@@ -65,7 +66,9 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     
 //    ship.playingSound = NO;
 //    ship.engineNoise = [SKAction playSoundFileNamed:@"RocketThrusters.caf" waitForCompletion:YES];
-    ship.missileNoise = [SKAction playSoundFileNamed:@"boom1.caf" waitForCompletion:YES];
+    ship.missileSound = [SKAction playSoundFileNamed:@"boom1.caf" waitForCompletion:YES];
+    ship.warningSound = [SKAction repeatActionForever:[SKAction playSoundFileNamed:@"alarm.caf" waitForCompletion:NO]];
+
     
     
     
@@ -81,6 +84,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     return ship;
 }
 
+#pragma mark - Ship controls
 //  From Apple sample code
 - (CGFloat)shipOrientation
 {
@@ -89,7 +93,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     return self.zRotation + M_PI_2;
 }
 
-#pragma mark - Ship controls
+
 //  TODO: Add engine exhaust and sound
 - (void)activateMainEngine
 {
@@ -157,7 +161,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
         missile.physicsBody.velocity = CGVectorMake(missileLaunchVelocity*cosf(shipDirection),
                                                     missileLaunchVelocity*sinf(shipDirection));
         
-        [self runAction:self.missileNoise];
+        [self runAction:self.missileSound];
         
         
     }
@@ -183,6 +187,10 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     if (ammount >= self.health) {
         self.health = 0;
         [self explode];
+    }
+    
+    if (self.health <=250) {
+        [self runAction:self.warningSound];
     }
     
 }
