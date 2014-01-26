@@ -21,6 +21,7 @@
 @property SKAction *rockExplodeSound;
 
 @property BOOL contentCreated;
+@property NSInteger rockCount;
 
 @end
 
@@ -48,6 +49,7 @@
     /* Setup your scene here */
     self.backgroundColor = [SKColor blackColor];
     self.rockExplodeSound = [SKAction playSoundFileNamed:@"boom6.caf" waitForCompletion:NO];
+    self.rockCount = 0;
     
     // Add the HUD node
     [self addHUD];
@@ -76,7 +78,7 @@
     
 #if DEBUG
     // Set the debug level and score here to override the defaults of level 1, score 0
-    self.HUD.level = 5;
+    self.HUD.level = 1;
     self.HUD.score = 0;
 #endif
     
@@ -118,21 +120,21 @@
 - (void)addRocks {
     
     //  How many rocks are there? Make that many asteroids
-    NSInteger rockCount = 0;
-    while ( rockCount < self.HUD.level) {
+    
+    while ( self.rockCount < self.HUD.level * 2) {
         
         JRWRockSprite *rock = [JRWRockSprite createRandomRock];
         
         rock.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
         
 #if DEBUG
-        NSLog(@"Level is %ld with %ld rocks in array", self.HUD.level, (long)rockCount);
+        NSLog(@"Level is %ld with %ld rocks", self.HUD.level, (long)self.rockCount + 1);
 #endif
         
         [self.playObjects addChild:rock];
         
         [self rockPhysics:rock];
-        rockCount++;
+        self.rockCount++;
         
     }
 }
@@ -314,6 +316,9 @@
 //  TODO: File bug on the ordering of position and creating physicsbody
 - (void)breakRock:(SKNode *)rock {
     
+    //  One rock down!
+    self.rockCount-- ;
+    
     //  Grab some physics info about the rock we are breaking
     CGPoint position = rock.position;
     CGVector linearVelocity = rock.physicsBody.velocity;
@@ -328,6 +333,7 @@
             self.HUD.score = self.HUD.score + 100;
             for (NSInteger i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBlargeRock];
+                self.rockCount++;
                 
                 newRock.position = position;
                 
@@ -349,6 +355,7 @@
             self.HUD.score = self.HUD.score + 150;
             for (NSInteger i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBmediumRock];
+                self.rockCount++;
                 
                 newRock.position = position;
                 
@@ -368,6 +375,7 @@
             [rock removeFromParent];
             for (NSInteger i = 0; i < 2; i++) {
                 JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBsmallRock];
+                self.rockCount++;
                 
                 newRock.position = position;
                 
@@ -389,6 +397,7 @@
             if (arc4random_uniform(10) > 5) {
                 for (NSInteger i = 0; i < 2; i++) {
                     JRWRockSprite *newRock = [JRWRockSprite createRockWithSize:RBtinyRock];
+                    self.rockCount++;
                     
                     newRock.position = position;
                     
@@ -412,9 +421,28 @@
     
     //  Update the score label
     [(SKLabelNode *)[self childNodeWithName:@"HUD/score"] setText: [NSString stringWithFormat:@"Score: %ld", (long)self.HUD.score]];
+
+    if (self.rockCount == 0) {
+        [self advanceLevel];
+    };
+
     
 }
 
+//  Start the next level
+- (void)advanceLevel {
+    //  Take care of the UI
+    self.HUD.level += 1;
+    [(SKLabelNode *)[self childNodeWithName:@"HUD/level"] setText: [NSString stringWithFormat:@"Level: %ld", (long)self.HUD.level]];
+    [self.HUD resetHealthBar];
+    
+    //  Heal the ship
+    self.ship.health = 1000;
+    
+    //  Respawn rocks for the new level
+    [self addRocks];
+    
+}
 
 
 
