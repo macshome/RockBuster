@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42018BDB1898BFE500A20310 /* JRWExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 42018BD91898BFE500A20310 /* JRWExplosion.sks */; };
+		42018BDC1898BFE500A20310 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 42018BDA1898BFE500A20310 /* spark.png */; };
 		4263B8761864AA2700EE423A /* JRWGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263B8751864AA2700EE423A /* JRWGameScene.m */; };
 		426857061893127B0071FB7E /* JRWHUDSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 426857051893127B0071FB7E /* JRWHUDSprite.m */; };
 		4268570918946C840071FB7E /* alarm.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4268570818946C840071FB7E /* alarm.caf */; };
@@ -43,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		42018BD71898BE3400A20310 /* Rock Buster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Rock Buster.entitlements"; sourceTree = "<group>"; };
+		42018BD91898BFE500A20310 /* JRWExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = JRWExplosion.sks; path = "Rock Buster/JRWExplosion.sks"; sourceTree = "<group>"; };
+		42018BDA1898BFE500A20310 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = "Rock Buster/spark.png"; sourceTree = "<group>"; };
 		4263B8741864AA2700EE423A /* JRWGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWGameScene.h; sourceTree = "<group>"; };
 		4263B8751864AA2700EE423A /* JRWGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWGameScene.m; sourceTree = "<group>"; };
 		426857041893127B0071FB7E /* JRWHUDSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWHUDSprite.h; sourceTree = "<group>"; };
@@ -102,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42018BD81898BF8F00A20310 /* Particle Generators */ = {
+			isa = PBXGroup;
+			children = (
+				42018BD91898BFE500A20310 /* JRWExplosion.sks */,
+				42018BDA1898BFE500A20310 /* spark.png */,
+			);
+			name = "Particle Generators";
+			sourceTree = "<group>";
+		};
 		4268570718944A230071FB7E /* Game Sprites */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +131,7 @@
 		429D95C918624D7F008B524D = {
 			isa = PBXGroup;
 			children = (
+				42018BD81898BF8F00A20310 /* Particle Generators */,
 				429D960F18624E87008B524D /* art.atlas */,
 				429D95DD18624D7F008B524D /* Rock Buster */,
 				429D95FF18624D7F008B524D /* Rock BusterTests */,
@@ -299,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42018BDC1898BFE500A20310 /* spark.png in Resources */,
 				429D961018624E87008B524D /* art.atlas in Resources */,
 				429D95F418624D7F008B524D /* Images.xcassets in Resources */,
 				4268570918946C840071FB7E /* alarm.caf in Resources */,
@@ -308,6 +323,7 @@
 				429D95E818624D7F008B524D /* Credits.rtf in Resources */,
 				429D95EA18624D7F008B524D /* MainMenu.xib in Resources */,
 				42FD23FB188F0B330005F527 /* RocketThrusters.caf in Resources */,
+				42018BDB1898BFE500A20310 /* JRWExplosion.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

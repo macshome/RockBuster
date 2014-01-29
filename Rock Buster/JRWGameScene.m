@@ -184,6 +184,35 @@
     return missile;
 }
 
+//  Add an explosion (Adapted from Apple Sample code)
+- (SKEmitterNode*) newExplosionNode: (CFTimeInterval) explosionDuration
+{
+    SKEmitterNode *emitter =  [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"JRWExplosion" ofType:@"sks"]];
+    
+    // Explosions always place their particles into the scene.
+    emitter.targetNode = self;
+    
+    // Stop spawning particles after enough have been spawned.
+    emitter.numParticlesToEmit = explosionDuration * emitter.particleBirthRate;
+    
+    // Calculate a time value that allows all the spawned particles to die. After this, the emitter node can be removed.
+    
+    CFTimeInterval totalTime = explosionDuration + emitter.particleLifetime+emitter.particleLifetimeRange/2;
+    [emitter runAction:[SKAction sequence:@[[SKAction waitForDuration:totalTime],
+                                            [SKAction removeFromParent]]]];
+    return emitter;
+}
+
+
+- (void)detonateMissile:(SKNode *)missile
+{
+    SKEmitterNode *explosion = [self newExplosionNode: 0.1];
+    explosion.position = missile.position;
+    [self addChild:explosion];
+    [missile removeFromParent];
+
+}
+
 #pragma mark - Hyperspace System
 //  Hyperspace removes the ship then makes it appear at a random place.
 //  Since we aren't dustin' crops we might appear under a rock.
@@ -304,7 +333,8 @@
 //  We hit a rock with a missile
 - (void)hitRock:(SKNode *)rock withMissile:(SKNode *)missile {
     missile.physicsBody = nil;
-    [missile removeFromParent];
+    [self detonateMissile:missile];
+
     [self breakRock:rock];
     
     // Generic rock boom
