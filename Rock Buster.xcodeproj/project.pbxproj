@@ -42,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42018BD71898BE3400A20310 /* Rock Buster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Rock Buster.entitlements"; sourceTree = "<group>"; };
 		4263B8741864AA2700EE423A /* JRWGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWGameScene.h; sourceTree = "<group>"; };
 		4263B8751864AA2700EE423A /* JRWGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWGameScene.m; sourceTree = "<group>"; };
 		426857041893127B0071FB7E /* JRWHUDSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWHUDSprite.h; sourceTree = "<group>"; };
@@ -158,6 +159,7 @@
 		429D95DD18624D7F008B524D /* Rock Buster */ = {
 			isa = PBXGroup;
 			children = (
+				42018BD71898BE3400A20310 /* Rock Buster.entitlements */,
 				429D95E918624D7F008B524D /* MainMenu.xib */,
 				429D95ED18624D7F008B524D /* JRWTitleScene.h */,
 				429D95EB18624D7F008B524D /* JRWTitleScene.m */,
@@ -262,6 +264,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Me;
 				TargetAttributes = {
+					429D95D118624D7F008B524D = {
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
 					429D95F818624D7F008B524D = {
 						TestTargetID = 429D95D118624D7F008B524D;
 					};
@@ -449,6 +458,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Rock Buster/Rock Buster.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rock Buster/Rock Buster-Prefix.pch";
@@ -463,6 +474,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Rock Buster/Rock Buster.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rock Buster/Rock Buster-Prefix.pch";
