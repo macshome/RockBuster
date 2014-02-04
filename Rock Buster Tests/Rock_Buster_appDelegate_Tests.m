@@ -47,6 +47,11 @@
     XCTAssertNotNil(self.appDelegate.window, @"Could not create window");
 }
 
+//  Texture atlas loading test
+- (void)testAtlasLoaded {
+    XCTAssertNotNil(self.appDelegate.artAtlas, @"Could not load art atlas");
+}
+
 //  SKView Tests
 - (void)testSKViewCreation {
     XCTAssertNotNil(self.appDelegate.skView, @"Could not create SKView");
@@ -60,11 +65,6 @@
 - (void)testSceneScaleMode {
     XCTAssertEqual(self.appDelegate.skView.scene.scaleMode, SKSceneScaleModeAspectFit, @"Scaling mode is not set to SKSceneScaleModeAspectFit");
 }
-
-//  Texture atlas loading test
-//- (void)testAtlasLoaded {
-//    XCTAssertNotNil(self.appDelegate.artAtlas, @"Could not load art atlas");
-//}
 
 //  Application quit on close test
 - (void)testWillAppCloseWithLastWindow {
