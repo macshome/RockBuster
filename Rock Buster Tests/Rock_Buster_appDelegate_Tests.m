@@ -62,9 +62,9 @@
 }
 
 //  Texture atlas loading test
-- (void)testAtlasLoaded {
-    XCTAssertNotNil(self.appDelegate.artAtlas, @"Could not load art atlas");
-}
+//- (void)testAtlasLoaded {
+//    XCTAssertNotNil(self.appDelegate.artAtlas, @"Could not load art atlas");
+//}
 
 //  Application quit on close test
 - (void)testWillAppCloseWithLastWindow {
