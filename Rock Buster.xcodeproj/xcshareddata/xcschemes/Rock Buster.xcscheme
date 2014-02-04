@@ -28,6 +28,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9C22A68F18A150A6002EF7D4"
+               BuildableName = "Rock Buster Tests.xctest"
+               BlueprintName = "Rock Buster Tests"
+               ReferencedContainer = "container:Rock Buster.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
