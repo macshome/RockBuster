@@ -23,27 +23,11 @@
 		429D95EC18624D7F008B524D /* JRWTitleScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D95EB18624D7F008B524D /* JRWTitleScene.m */; };
 		429D95EF18624D7F008B524D /* JRWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 429D95EE18624D7F008B524D /* JRWAppDelegate.m */; };
 		429D95F418624D7F008B524D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 429D95F318624D7F008B524D /* Images.xcassets */; };
-		429D95FB18624D7F008B524D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95FA18624D7F008B524D /* XCTest.framework */; };
-		429D95FC18624D7F008B524D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D518624D7F008B524D /* Cocoa.framework */; };
-		429D960418624D7F008B524D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 429D960218624D7F008B524D /* InfoPlist.strings */; };
 		429D961018624E87008B524D /* art.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 429D960F18624E87008B524D /* art.atlas */; };
 		42E9FA591891E30900005B85 /* boom1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 42E9FA581891E30900005B85 /* boom1.caf */; };
 		42E9FA5B1891E5A300005B85 /* boom6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 42E9FA5A1891E51E00005B85 /* boom6.caf */; };
 		42FD23FB188F0B330005F527 /* RocketThrusters.caf in Resources */ = {isa = PBXBuildFile; fileRef = 42FD23FA188F0B330005F527 /* RocketThrusters.caf */; };
-		9C02919C189D92B3000B397B /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D718624D7F008B524D /* SpriteKit.framework */; };
-		9C02919D189D9301000B397B /* JRWExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 42018BD91898BFE500A20310 /* JRWExplosion.sks */; };
-		9C02919E189D9301000B397B /* art.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 429D960F18624E87008B524D /* art.atlas */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		429D95FD18624D7F008B524D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 429D95CA18624D7F008B524D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 429D95D118624D7F008B524D;
-			remoteInfo = "Rock Buster";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		42018BD71898BE3400A20310 /* Rock Buster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Rock Buster.entitlements"; sourceTree = "<group>"; };
@@ -75,10 +59,7 @@
 		429D95EE18624D7F008B524D /* JRWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRWAppDelegate.m; sourceTree = "<group>"; };
 		429D95F018624D7F008B524D /* JRWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRWAppDelegate.h; sourceTree = "<group>"; };
 		429D95F318624D7F008B524D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		429D95F918624D7F008B524D /* Rock BusterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rock BusterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		429D95FA18624D7F008B524D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		429D960118624D7F008B524D /* Rock BusterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Rock BusterTests-Info.plist"; sourceTree = "<group>"; };
-		429D960318624D7F008B524D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		429D960F18624E87008B524D /* art.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = art.atlas; path = "Rock Buster/art.atlas"; sourceTree = "<group>"; };
 		42E9FA581891E30900005B85 /* boom1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boom1.caf; sourceTree = "<group>"; };
 		42E9FA5A1891E51E00005B85 /* boom6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boom6.caf; sourceTree = "<group>"; };
@@ -92,16 +73,6 @@
 			files = (
 				429D95D818624D7F008B524D /* SpriteKit.framework in Frameworks */,
 				429D95D618624D7F008B524D /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		429D95F618624D7F008B524D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9C02919C189D92B3000B397B /* SpriteKit.framework in Frameworks */,
-				429D95FC18624D7F008B524D /* Cocoa.framework in Frameworks */,
-				429D95FB18624D7F008B524D /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +107,6 @@
 				42018BD81898BF8F00A20310 /* Particle Generators */,
 				429D960F18624E87008B524D /* art.atlas */,
 				429D95DD18624D7F008B524D /* Rock Buster */,
-				429D95FF18624D7F008B524D /* Rock BusterTests */,
 				429D95D418624D7F008B524D /* Frameworks */,
 				429D95D318624D7F008B524D /* Products */,
 			);
@@ -146,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				429D95D218624D7F008B524D /* Rock Buster.app */,
-				429D95F918624D7F008B524D /* Rock BusterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,23 +172,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		429D95FF18624D7F008B524D /* Rock BusterTests */ = {
-			isa = PBXGroup;
-			children = (
-				429D960018624D7F008B524D /* Supporting Files */,
-			);
-			path = "Rock BusterTests";
-			sourceTree = "<group>";
-		};
-		429D960018624D7F008B524D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				429D960118624D7F008B524D /* Rock BusterTests-Info.plist */,
-				429D960218624D7F008B524D /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		429DC61B188DDF730036DFAE /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,24 +203,6 @@
 			productReference = 429D95D218624D7F008B524D /* Rock Buster.app */;
 			productType = "com.apple.product-type.application";
 		};
-		429D95F818624D7F008B524D /* Rock BusterTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 429D960C18624D7F008B524D /* Build configuration list for PBXNativeTarget "Rock BusterTests" */;
-			buildPhases = (
-				429D95F518624D7F008B524D /* Sources */,
-				429D95F618624D7F008B524D /* Frameworks */,
-				429D95F718624D7F008B524D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				429D95FE18624D7F008B524D /* PBXTargetDependency */,
-			);
-			name = "Rock BusterTests";
-			productName = "Rock BusterTests";
-			productReference = 429D95F918624D7F008B524D /* Rock BusterTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -286,9 +220,6 @@
 							};
 						};
 					};
-					429D95F818624D7F008B524D = {
-						TestTargetID = 429D95D118624D7F008B524D;
-					};
 				};
 			};
 			buildConfigurationList = 429D95CD18624D7F008B524D /* Build configuration list for PBXProject "Rock Buster" */;
@@ -304,7 +235,6 @@
 			projectRoot = "";
 			targets = (
 				429D95D118624D7F008B524D /* Rock Buster */,
-				429D95F818624D7F008B524D /* Rock BusterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -328,16 +258,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		429D95F718624D7F008B524D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9C02919D189D9301000B397B /* JRWExplosion.sks in Resources */,
-				9C02919E189D9301000B397B /* art.atlas in Resources */,
-				429D960418624D7F008B524D /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -355,22 +275,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		429D95F518624D7F008B524D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		429D95FE18624D7F008B524D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 429D95D118624D7F008B524D /* Rock Buster */;
-			targetProxy = 429D95FD18624D7F008B524D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		429D95E018624D7F008B524D /* InfoPlist.strings */ = {
@@ -387,14 +292,6 @@
 				429D95E718624D7F008B524D /* en */,
 			);
 			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		429D960218624D7F008B524D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				429D960318624D7F008B524D /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -504,46 +401,6 @@
 			};
 			name = Release;
 		};
-		429D960D18624D7F008B524D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Rock Buster.app/Contents/MacOS/Rock Buster";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Rock Buster/Rock Buster-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Rock BusterTests/Rock BusterTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		429D960E18624D7F008B524D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Rock Buster.app/Contents/MacOS/Rock Buster";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Rock Buster/Rock Buster-Prefix.pch";
-				INFOPLIST_FILE = "Rock BusterTests/Rock BusterTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -561,15 +418,6 @@
 			buildConfigurations = (
 				429D960A18624D7F008B524D /* Debug */,
 				429D960B18624D7F008B524D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		429D960C18624D7F008B524D /* Build configuration list for PBXNativeTarget "Rock BusterTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				429D960D18624D7F008B524D /* Debug */,
-				429D960E18624D7F008B524D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
