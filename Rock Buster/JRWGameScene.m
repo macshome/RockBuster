@@ -326,8 +326,8 @@
             break;
     }
     rock.physicsBody.angularDamping = 0.0;
-    [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(1)-1];
-    [rock.physicsBody applyImpulse:CGVectorMake(arc4random_uniform(10), arc4random_uniform(10))];
+    [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(5)-5];
+    [rock.physicsBody applyImpulse:CGVectorMake(-500, 901)];
 }
 
 //  We hit a rock with a missile
