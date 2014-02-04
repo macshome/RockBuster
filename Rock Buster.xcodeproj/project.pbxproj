@@ -35,23 +35,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
-		9C22A6A518A1769A002EF7D4 /* PBXBuildRule */ = {
+		9C22A6A818A177F1002EF7D4 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
 			fileType = folder.skatlas;
 			isEditable = 1;
 			outputFiles = (
 			);
-			script = "$(DEVELOPER_TOOLS_DIR)/../usr/bin/TextureAtlas\n";
-		};
-		9C22A6A618A1771D002EF7D4 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			fileType = folder.skatlas;
-			isEditable = 1;
-			outputFiles = (
-			);
-			script = "$(DEVELOPER_TOOLS_DIR)/../usr/bin/TextureAtlas\n";
+			script = "$(DEVELOPER_TOOLS_DIR)/../usr/bin/TextureAtlas";
 		};
 /* End PBXBuildRule section */
 
@@ -268,7 +259,6 @@
 				429D95D018624D7F008B524D /* Resources */,
 			);
 			buildRules = (
-				9C22A6A518A1769A002EF7D4 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -286,7 +276,7 @@
 				9C22A68E18A150A6002EF7D4 /* Resources */,
 			);
 			buildRules = (
-				9C22A6A618A1771D002EF7D4 /* PBXBuildRule */,
+				9C22A6A818A177F1002EF7D4 /* PBXBuildRule */,
 			);
 			dependencies = (
 				9C22A69C18A150A6002EF7D4 /* PBXTargetDependency */,
