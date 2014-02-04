@@ -7,8 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "JRWAppDelegate.h"
 
 @interface Rock_Buster_Tests : XCTestCase
+@property NSApplication *app;
 
 @end
 
@@ -17,18 +19,22 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    _app = [NSApplication sharedApplication];
+    
 }
 
 - (void)tearDown
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+    self.app = nil;
 }
 
-- (void)testExample
+- (void)testAppLaunched
 {
-//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertNotNil(self.app, @"Could not find shared application");
 }
+
+
 
 @end

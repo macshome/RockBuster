@@ -30,6 +30,8 @@
 		9C22A69118A150A6002EF7D4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95FA18624D7F008B524D /* XCTest.framework */; };
 		9C22A69718A150A6002EF7D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C22A69518A150A6002EF7D4 /* InfoPlist.strings */; };
 		9C22A69918A150A6002EF7D4 /* Rock_Buster_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A69818A150A6002EF7D4 /* Rock_Buster_Tests.m */; };
+		9C22A6A018A15367002EF7D4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D518624D7F008B524D /* Cocoa.framework */; };
+		9C22A6A118A153EE002EF7D4 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D718624D7F008B524D /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C22A6A118A153EE002EF7D4 /* SpriteKit.framework in Frameworks */,
+				9C22A6A018A15367002EF7D4 /* Cocoa.framework in Frameworks */,
 				9C22A69118A150A6002EF7D4 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
