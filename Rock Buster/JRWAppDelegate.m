@@ -17,8 +17,8 @@
 {
     
     //  Preload the textures
-    SKTextureAtlas *artAtlas = [SKTextureAtlas atlasNamed:@"art"];
-    [artAtlas preloadWithCompletionHandler:^{
+    self.artAtlas = [SKTextureAtlas atlasNamed:@"art"];
+    [self.artAtlas preloadWithCompletionHandler:^{
         NSLog(@"Loaded art atlas");
     }];
     
