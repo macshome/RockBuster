@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "9C22A68F18A150A6002EF7D4"
-                     BuildableName = "Rock Buster Tests.xctest"
-                     BlueprintName = "Rock Buster Tests"
+                     BlueprintIdentifier = "429D95D118624D7F008B524D"
+                     BuildableName = "Rock Buster.app"
+                     BlueprintName = "Rock Buster"
                      ReferencedContainer = "container:Rock Buster.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
