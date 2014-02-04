@@ -228,7 +228,8 @@
 				9C22A69A18A150A6002EF7D4 /* Rock Buster Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
+			path = "Rock Buster Tests";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
