@@ -19,20 +19,22 @@
     //  Preload the textures
     self.artAtlas = [SKTextureAtlas atlasNamed:@"art"];
     [self.artAtlas preloadWithCompletionHandler:^{
-        NSLog(@"Loaded art atlas");
+        //  Textures loaded so we are good to go!
+        
+        /* Pick a size for the scene
+         Start with the current main display size.
+         */
+        NSInteger width = [[NSScreen mainScreen] frame].size.width;
+        NSInteger height = [[NSScreen mainScreen] frame].size.height;
+        JRWTitleScene *scene = [JRWTitleScene sceneWithSize:CGSizeMake(width, height)];
+        
+        /* Set the scale mode to scale to fit the window */
+        scene.scaleMode = SKSceneScaleModeAspectFit;
+        
+        [self.skView presentScene:scene];
     }];
     
-    /* Pick a size for the scene
-     Start with the current main display size.
-     */
-    NSInteger width = [[NSScreen mainScreen] frame].size.width;
-    NSInteger height = [[NSScreen mainScreen] frame].size.height;
-    JRWTitleScene *scene = [JRWTitleScene sceneWithSize:CGSizeMake(width, height)];
-
-    /* Set the scale mode to scale to fit the window */
-    scene.scaleMode = SKSceneScaleModeAspectFit;
-
-    [self.skView presentScene:scene];
+  
 
 #if DEBUG
     self.skView.showsFPS = YES;
