@@ -42,9 +42,9 @@
 			fileType = pattern.proxy;
 			isEditable = 1;
 			outputFiles = (
-				"\"${DERIVED_FILE_DIR}/${INPUT_FILE_BASE}.atlasc\"",
+				"${DERIVED_FILE_DIR}/${INPUT_FILE_BASE}.atlasc",
 			);
-			script = "${DEVELOPER_TOOLS_DIR}/../usr/bin/TextureAtlas \"${INPUT_FILE_PATH}\" \"${DERIVED_FILE_DIR}\"\n";
+			script = "${DEVELOPER_TOOLS_DIR}/../usr/bin/TextureAtlas \"${INPUT_FILE_PATH}\" \"${DERIVED_FILE_DIR}\"";
 		};
 /* End PBXBuildRule section */
 
