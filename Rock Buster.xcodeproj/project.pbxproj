@@ -34,6 +34,20 @@
 		9C22A6A118A153EE002EF7D4 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D718624D7F008B524D /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		9C5CCAF818A1CCF400C5E4D5 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.atlas";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"\"${DERIVED_FILE_DIR}/${INPUT_FILE_BASE}.atlasc\"",
+			);
+			script = "${DEVELOPER_TOOLS_DIR}/../usr/bin/TextureAtlas \"${INPUT_FILE_PATH}\" \"${DERIVED_FILE_DIR}\"\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		9C22A69B18A150A6002EF7D4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -247,6 +261,7 @@
 				429D95D018624D7F008B524D /* Resources */,
 			);
 			buildRules = (
+				9C5CCAF818A1CCF400C5E4D5 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -589,6 +604,7 @@
 				9C22A69E18A150A6002EF7D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
