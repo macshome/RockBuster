@@ -27,6 +27,7 @@
 		42E9FA591891E30900005B85 /* boom1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 42E9FA581891E30900005B85 /* boom1.caf */; };
 		42E9FA5B1891E5A300005B85 /* boom6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 42E9FA5A1891E51E00005B85 /* boom6.caf */; };
 		42FD23FB188F0B330005F527 /* RocketThrusters.caf in Resources */ = {isa = PBXBuildFile; fileRef = 42FD23FA188F0B330005F527 /* RocketThrusters.caf */; };
+		9C1BF3C518A292AF00318443 /* Rock_Buster_Title_Scene_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1BF3C418A292AF00318443 /* Rock_Buster_Title_Scene_Tests.m */; };
 		9C22A69118A150A6002EF7D4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95FA18624D7F008B524D /* XCTest.framework */; };
 		9C22A69718A150A6002EF7D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C22A69518A150A6002EF7D4 /* InfoPlist.strings */; };
 		9C22A69918A150A6002EF7D4 /* Rock_Buster_appDelegate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A69818A150A6002EF7D4 /* Rock_Buster_appDelegate_Tests.m */; };
@@ -93,6 +94,7 @@
 		42E9FA581891E30900005B85 /* boom1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boom1.caf; sourceTree = "<group>"; };
 		42E9FA5A1891E51E00005B85 /* boom6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boom6.caf; sourceTree = "<group>"; };
 		42FD23FA188F0B330005F527 /* RocketThrusters.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RocketThrusters.caf; sourceTree = "<group>"; };
+		9C1BF3C418A292AF00318443 /* Rock_Buster_Title_Scene_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rock_Buster_Title_Scene_Tests.m; sourceTree = "<group>"; };
 		9C22A69018A150A6002EF7D4 /* Rock Buster Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rock Buster Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C22A69418A150A6002EF7D4 /* Rock Buster Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Rock Buster Tests-Info.plist"; sourceTree = "<group>"; };
 		9C22A69618A150A6002EF7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				9C22A69818A150A6002EF7D4 /* Rock_Buster_appDelegate_Tests.m */,
+				9C1BF3C418A292AF00318443 /* Rock_Buster_Title_Scene_Tests.m */,
 				9C22A69318A150A6002EF7D4 /* Supporting Files */,
 			);
 			path = "Rock Buster Tests";
@@ -377,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C22A69918A150A6002EF7D4 /* Rock_Buster_appDelegate_Tests.m in Sources */,
+				9C1BF3C518A292AF00318443 /* Rock_Buster_Title_Scene_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
