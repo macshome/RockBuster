@@ -43,6 +43,10 @@
     XCTAssertNotNil(self.appDelegate, @"Could not find application delegate");
 }
 
+- (void)testConformsToNSApplicationDelegate {
+    XCTAssertTrue([self.appDelegate conformsToProtocol:@protocol(NSApplicationDelegate)], @"The game sceen needs to conform to the NSApplicationDelegate protocol");
+}
+
 - (void)testWindowCreation {
     XCTAssertNotNil(self.appDelegate.window, @"Could not create window");
 }
