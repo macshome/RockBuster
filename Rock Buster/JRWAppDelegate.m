@@ -10,8 +10,7 @@
 #import "JRWTitleScene.h"
 #import "JRWGameScene.h"
 
-@implementation JRWAppDelegate
-
+@implementation JRWAppDelegate // COV_NF_LINE
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {

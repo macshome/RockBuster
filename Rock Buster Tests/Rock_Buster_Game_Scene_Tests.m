@@ -11,6 +11,7 @@
 
 @interface Rock_Buster_Game_Scene_Tests : XCTestCase
 @property JRWGameScene *gameScene;
+@property SKNode *missile;
 @end
 
 @implementation Rock_Buster_Game_Scene_Tests
@@ -19,6 +20,7 @@
 {
     [super setUp];
     _gameScene = [[JRWGameScene alloc] initWithSize:CGSizeMake(1024, 720)];
+    _missile = [_gameScene addMissile];
 }
 
 - (void)tearDown
@@ -39,6 +41,14 @@
 
 - (void)testConformsToSKPhysicsContactDelegate {
     XCTAssertTrue([self.gameScene conformsToProtocol:@protocol(SKPhysicsContactDelegate)], @"The game sceen needs to conform to the SKPhysicsContactDelegate protocol");
+}
+
+- (void)testAddMissile {
+    XCTAssertNotNil(self.missile, @"Can't add a missile.");
+}
+
+- (void)testMissileHasPhysicsBody {
+    XCTAssertNotNil(self.missile.physicsBody, @"Missile is missing it's physics body");
 }
 
 

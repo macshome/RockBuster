@@ -16,7 +16,7 @@ static inline int randRock(int high) {
 }
 
 
-@implementation JRWRockSprite
+@implementation JRWRockSprite // COV_NF_LINE
 
 
 

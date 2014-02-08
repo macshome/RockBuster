@@ -27,7 +27,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
 @property BOOL playingSound;
 @end
 
-@implementation JRWShipSprite
+@implementation JRWShipSprite // COV_NF_LINE
 
 #pragma mark - Ship creation
 + (instancetype)createShip {

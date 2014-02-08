@@ -19,7 +19,7 @@
 
 @end
 
-@implementation JRWTitleScene
+@implementation JRWTitleScene 
 
 #pragma mark - Scene Setup Methods
 
@@ -27,7 +27,7 @@
     if (self = [super initWithSize:size]) {
         return self;
     }
-    return nil;
+    return nil;  // COV_NF_LINE
 }
 
 - (void)didMoveToView:(SKView *)view
@@ -110,9 +110,6 @@
     }
 }
 
-#pragma mark - Frame Updates
--(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
-}
+
 
 @end

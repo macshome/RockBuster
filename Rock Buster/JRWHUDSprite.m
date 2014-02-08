@@ -15,7 +15,7 @@
 
 @end
 
-@implementation JRWHUDSprite
+@implementation JRWHUDSprite // COV_NF_LINE
 
 //  Create the HUD
 + (instancetype)createHUDforFrame:(CGRect)rect {
