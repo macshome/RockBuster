@@ -19,7 +19,6 @@ static inline int randRock(int high) {
 @implementation JRWRockSprite // COV_NF_LINE
 
 
-
 + (instancetype)createRandomRock {
     //  We have 5 rock types, pick a random one.
     JRWRockSprite *rock = [self createRockWithSize:randRock(5)];

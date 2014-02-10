@@ -32,7 +32,7 @@
     if (self = [super initWithSize:size]) {
         return self;
     }
-    return nil;
+    return nil; // COV_NF_LINE
 }
 
 - (void)didMoveToView:(SKView *)view
@@ -327,7 +327,7 @@
     }
     rock.physicsBody.angularDamping = 0.0;
     [rock.physicsBody applyTorque:(CGFloat)arc4random_uniform(5)-5];
-    [rock.physicsBody applyImpulse:CGVectorMake(-500, 901)];
+    [rock.physicsBody applyImpulse:CGVectorMake(arc4random_uniform(500), 100)];
 }
 
 //  We hit a rock with a missile

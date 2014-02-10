@@ -24,9 +24,9 @@
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
     self.titleScene = nil;
+    [super tearDown];
+    
 }
 
 - (void)testTitleSceneExists {
@@ -36,6 +36,7 @@
 - (void)testCanSetTitleSceneSize {
     XCTAssertEqual(self.titleScene.size, CGSizeMake(1024, 720), @"Title scene size wasn't set as expected");
 }
+
 
 
 

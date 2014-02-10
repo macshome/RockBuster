@@ -28,12 +28,15 @@
 		42E9FA5B1891E5A300005B85 /* boom6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 42E9FA5A1891E51E00005B85 /* boom6.caf */; };
 		42FD23FB188F0B330005F527 /* RocketThrusters.caf in Resources */ = {isa = PBXBuildFile; fileRef = 42FD23FA188F0B330005F527 /* RocketThrusters.caf */; };
 		9C1BF3C518A292AF00318443 /* Rock_Buster_Title_Scene_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1BF3C418A292AF00318443 /* Rock_Buster_Title_Scene_Tests.m */; };
+		9C1C6A1618A81E29000797BC /* Rock_Buster_ShipSprite_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1C6A1518A81E29000797BC /* Rock_Buster_ShipSprite_Tests.m */; };
 		9C22A69118A150A6002EF7D4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95FA18624D7F008B524D /* XCTest.framework */; };
 		9C22A69718A150A6002EF7D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C22A69518A150A6002EF7D4 /* InfoPlist.strings */; };
 		9C22A69918A150A6002EF7D4 /* Rock_Buster_appDelegate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A69818A150A6002EF7D4 /* Rock_Buster_appDelegate_Tests.m */; };
 		9C22A6A018A15367002EF7D4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D518624D7F008B524D /* Cocoa.framework */; };
 		9C22A6A118A153EE002EF7D4 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429D95D718624D7F008B524D /* SpriteKit.framework */; };
 		9C5CB0D018A3E9A400D9D0C5 /* Rock_Buster_Game_Scene_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5CB0CF18A3E9A400D9D0C5 /* Rock_Buster_Game_Scene_Tests.m */; };
+		9CA4E95518A91D98008E44E0 /* Rock_Buster_RockSprite_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4E95418A91D98008E44E0 /* Rock_Buster_RockSprite_Tests.m */; };
+		9CC410C518A818E0008820D5 /* Rock_Buster_HUDSprite_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC410C418A818E0008820D5 /* Rock_Buster_HUDSprite_Tests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -96,12 +99,15 @@
 		42E9FA5A1891E51E00005B85 /* boom6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boom6.caf; sourceTree = "<group>"; };
 		42FD23FA188F0B330005F527 /* RocketThrusters.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RocketThrusters.caf; sourceTree = "<group>"; };
 		9C1BF3C418A292AF00318443 /* Rock_Buster_Title_Scene_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rock_Buster_Title_Scene_Tests.m; sourceTree = "<group>"; };
+		9C1C6A1518A81E29000797BC /* Rock_Buster_ShipSprite_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rock_Buster_ShipSprite_Tests.m; sourceTree = "<group>"; };
 		9C22A69018A150A6002EF7D4 /* Rock Buster Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rock Buster Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C22A69418A150A6002EF7D4 /* Rock Buster Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Rock Buster Tests-Info.plist"; sourceTree = "<group>"; };
 		9C22A69618A150A6002EF7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9C22A69818A150A6002EF7D4 /* Rock_Buster_appDelegate_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Rock_Buster_appDelegate_Tests.m; sourceTree = "<group>"; };
 		9C22A69A18A150A6002EF7D4 /* Rock Buster Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rock Buster Tests-Prefix.pch"; sourceTree = "<group>"; };
 		9C5CB0CF18A3E9A400D9D0C5 /* Rock_Buster_Game_Scene_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rock_Buster_Game_Scene_Tests.m; sourceTree = "<group>"; };
+		9CA4E95418A91D98008E44E0 /* Rock_Buster_RockSprite_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rock_Buster_RockSprite_Tests.m; sourceTree = "<group>"; };
+		9CC410C418A818E0008820D5 /* Rock_Buster_HUDSprite_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rock_Buster_HUDSprite_Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +242,9 @@
 		9C22A69218A150A6002EF7D4 /* Rock Buster Tests */ = {
 			isa = PBXGroup;
 			children = (
+				9CA4E95418A91D98008E44E0 /* Rock_Buster_RockSprite_Tests.m */,
+				9C1C6A1518A81E29000797BC /* Rock_Buster_ShipSprite_Tests.m */,
+				9CC410C418A818E0008820D5 /* Rock_Buster_HUDSprite_Tests.m */,
 				9C22A69818A150A6002EF7D4 /* Rock_Buster_appDelegate_Tests.m */,
 				9C1BF3C418A292AF00318443 /* Rock_Buster_Title_Scene_Tests.m */,
 				9C5CB0CF18A3E9A400D9D0C5 /* Rock_Buster_Game_Scene_Tests.m */,
@@ -382,9 +391,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CC410C518A818E0008820D5 /* Rock_Buster_HUDSprite_Tests.m in Sources */,
+				9CA4E95518A91D98008E44E0 /* Rock_Buster_RockSprite_Tests.m in Sources */,
 				9C22A69918A150A6002EF7D4 /* Rock_Buster_appDelegate_Tests.m in Sources */,
 				9C1BF3C518A292AF00318443 /* Rock_Buster_Title_Scene_Tests.m in Sources */,
 				9C5CB0D018A3E9A400D9D0C5 /* Rock_Buster_Game_Scene_Tests.m in Sources */,
+				9C1C6A1618A81E29000797BC /* Rock_Buster_ShipSprite_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
