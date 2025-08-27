@@ -3,7 +3,7 @@
 //  Rock Buster
 //
 //  Created by Josh Wisenbaker on 12/18/13.
-//  Copyright (c) 2013 Me. All rights reserved.
+//  Copyright (c) 2013-2024 Me. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

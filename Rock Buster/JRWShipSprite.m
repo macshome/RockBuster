@@ -66,7 +66,7 @@ static const CGFloat missileLaunchVelocity = 1000.0;
     
     //    ship.playingSound = NO;
     //    ship.engineNoise = [SKAction playSoundFileNamed:@"RocketThrusters.caf" waitForCompletion:YES];
-    ship.missileSound = [SKAction playSoundFileNamed:@"boom1.caf" waitForCompletion:YES];
+    ship.missileSound = [SKAction playSoundFileNamed:@"boom1.caf" waitForCompletion:NO];
     ship.warningSound = [SKAction repeatActionForever:[SKAction playSoundFileNamed:@"alarm.caf" waitForCompletion:NO]];
     
     

@@ -23,7 +23,7 @@
 
 #pragma mark - Scene Setup Methods
 
--(id)initWithSize:(CGSize)size {
+- (instancetype)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         return self;
     }
