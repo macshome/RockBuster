@@ -3,7 +3,7 @@
 //  Rock Buster
 //
 //  Created by Josh Wisenbaker on 12/18/13.
-//  Copyright (c) 2013 Me. All rights reserved.
+//  Copyright (c) 2013-2024 Me. All rights reserved.
 //
 
 #import "JRWShipSprite.h"
@@ -20,11 +20,11 @@ static const CGFloat missileLaunchDistance = 40;
 static const CGFloat missileLaunchVelocity = 1000.0;
 
 @interface JRWShipSprite ()
-@property CFTimeInterval timeLastFiredMissile;
-@property SKAction *engineSound;
-@property SKAction *missileSound;
-@property SKAction *warningSound;
-@property BOOL playingSound;
+@property (nonatomic) CFTimeInterval timeLastFiredMissile;
+@property (nonatomic, strong) SKAction *engineSound;
+@property (nonatomic, strong) SKAction *missileSound;
+@property (nonatomic, strong) SKAction *warningSound;
+@property (nonatomic) BOOL playingSound;
 @end
 
 @implementation JRWShipSprite // COV_NF_LINE

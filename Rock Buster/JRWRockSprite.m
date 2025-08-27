@@ -3,7 +3,7 @@
 //  Rock Buster
 //
 //  Created by Josh Wisenbaker on 12/18/13.
-//  Copyright (c) 2013 Me. All rights reserved.
+//  Copyright (c) 2013-2024 Me. All rights reserved.
 //
 
 #import "JRWRockSprite.h"
@@ -26,7 +26,7 @@ static inline int randRock(int high) {
 }
 
 + (instancetype)createRockWithSize:(RBrockType)rockType {
-    JRWRockSprite *rock = [JRWRockSprite spriteNodeWithTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"asteroid_%li", rockType]]];
+    JRWRockSprite *rock = [JRWRockSprite spriteNodeWithTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"asteroid_%ld", (long)rockType]]];
     
     rock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rock.size];
     rock.physicsBody.categoryBitMask = RBCasteroidCategory;

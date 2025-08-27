@@ -14,14 +14,14 @@
 
 @interface JRWGameScene ()
 
-@property JRWShipSprite *ship;
-@property JRWHUDSprite *HUD;
+@property (nonatomic, strong) JRWShipSprite *ship;
+@property (nonatomic, strong) JRWHUDSprite *HUD;
 
-@property SKNode *playObjects;
-@property SKAction *rockExplodeSound;
+@property (nonatomic, strong) SKNode *playObjects;
+@property (nonatomic, strong) SKAction *rockExplodeSound;
 
-@property BOOL contentCreated;
-@property NSInteger rockCount;
+@property (nonatomic) BOOL contentCreated;
+@property (nonatomic) NSInteger rockCount;
 
 @end
 

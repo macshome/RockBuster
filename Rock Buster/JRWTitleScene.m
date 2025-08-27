@@ -3,7 +3,7 @@
 //  Rock Buster
 //
 //  Created by Josh Wisenbaker on 12/18/13.
-//  Copyright (c) 2013 Me. All rights reserved.
+//  Copyright (c) 2013-2024 Me. All rights reserved.
 //
 
 #import "JRWTitleScene.h"
@@ -13,9 +13,9 @@
 
 @interface JRWTitleScene ()
 
-@property SKLabelNode *startTextNode;
-@property SKLabelNode *titleText;
-@property BOOL contentCreated;
+@property (nonatomic, strong) SKLabelNode *startTextNode;
+@property (nonatomic, strong) SKLabelNode *titleText;
+@property (nonatomic) BOOL contentCreated;
 
 @end
 
@@ -99,7 +99,7 @@
 - (void)keyDown:(NSEvent *)theEvent {
     NSString *characters = [theEvent charactersIgnoringModifiers];
     if ([characters length]) {
-        for (int s = 0; s<[characters length]; s++) {
+        for (NSUInteger s = 0; s < [characters length]; s++) {
             unichar character = [characters characterAtIndex:s];
             switch (character) {
                 case '1':

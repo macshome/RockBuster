@@ -3,7 +3,7 @@
 //  Rock Buster
 //
 
-//  Copyright (c) 2013 Me. All rights reserved.
+//  Copyright (c) 2013-2024 Me. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
@@ -14,6 +14,6 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet SKView *skView;
 
-@property SKTextureAtlas *artAtlas;
+@property (nonatomic, strong) SKTextureAtlas *artAtlas;
 
 @end

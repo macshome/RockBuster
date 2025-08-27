@@ -3,15 +3,15 @@
 //  Rock Buster
 //
 //  Created by Josh Wisenbaker on 1/24/14.
-//  Copyright (c) 2014 Me. All rights reserved.
+//  Copyright (c) 2014-2024 Me. All rights reserved.
 //
 
 #import "JRWHUDSprite.h"
 
 @interface JRWHUDSprite ()
 
-@property SKSpriteNode *hyperspaceBar;
-@property SKSpriteNode *healthBar;
+@property (nonatomic, strong) SKSpriteNode *hyperspaceBar;
+@property (nonatomic, strong) SKSpriteNode *healthBar;
 
 @end
 

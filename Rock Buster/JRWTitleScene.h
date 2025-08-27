@@ -3,7 +3,7 @@
 //  Rock Buster
 //
 
-//  Copyright (c) 2013 Me. All rights reserved.
+//  Copyright (c) 2013-2024 Me. All rights reserved.
 //
 
 #import <SpriteKit/SpriteKit.h>
